@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <p class="navbar-brand">{{storename | async}}</p>
+      <p class="navbar-brand">{{storename$ | async}}</p>
       <button
         style="background-color: #fcd535"
         class="navbar-toggler"
@@ -31,7 +31,7 @@
         </ul>
 
         <div style="display: flex; flex-grow: 1;justify-content: center;">
-          <button class="exit-button" routerLink="">
+          <button class="exit-button" routerLink="" (click)="clear()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="56"
