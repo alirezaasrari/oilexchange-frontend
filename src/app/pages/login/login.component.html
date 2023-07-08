@@ -1,0 +1,50 @@
+<div class="container d-flex justify-content-center pt-5">
+  <div class="login-container">
+    <div class="container">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="نام مغازه"
+          [(ngModel)]="storename"
+        />
+        <label for="floatingPassword">نام مغازه</label>
+      </div>
+      <div class="form-floating mt-3">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword1"
+          placeholder="رمز ورود"
+          [(ngModel)]="pass"
+        />
+        <label for="floatingPassword1">رمز ورود</label>
+      </div>
+     
+    </div>
+    <div class="row d-flex justify-content-center pb-1">
+      <button routerLink="/login/adminpanel" (click)="OnLOgin(storename,pass)" class="login-to-crm mt-3">ورود</button>
+    </div>
+    <div
+      class="container row login-options mt-3 mb-5 d-flex justify-content-center"
+    >
+      <hr style="width: 70%" />
+      <div class="border-seperator col-6 d-flex justify-content-center">
+        
+        <button routerLink="register" class="login-to-crm mt-4">ثبت نام</button>
+      </div>
+      <div class="col-6 d-flex justify-content-center">
+        <button routerLink="/login/otp" class="login-to-crm mt-4">فراموشی رمز</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center mt-2">
+<button
+  routerLink=""
+  class="return mb-5"
+>
+  بازگشتبه صفحه قبل
+</button>
+</div>

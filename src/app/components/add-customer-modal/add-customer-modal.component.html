@@ -1,0 +1,202 @@
+<button
+  type="button"
+  class="add-button"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+  data-bs-whatever="@mdo"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="68"
+    height="68"
+    fill="royalblue"
+    class="bi bi-plus-lg"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+    />
+  </svg>
+</button>
+
+<div
+  class="modal fade was-validated"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body d-flex justify-content-center">
+        <div class="card mt-5" style="width: 18rem">
+          <div class="card-body">
+            <!-- <h5 class="card-title text-center">Card title</h5> -->
+            <app-plaque-small></app-plaque-small>
+            <!-- here is our form -->
+            <div class="row d-flex justify-content-between mt-2">
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[0] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="enginoil"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[1] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="GearBoxOil"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[2] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="BrakeOil"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[3] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="AirFilter"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[4] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="CabinFilter"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[10] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="hydraulicoil"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[5] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="OilFilter"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[6] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="PetrolFilter"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[7] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="UntiFreeze"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[8] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="PreviouseKilometer"
+                /></span>
+              </div>
+
+              <div class="history-card-style col-5 text-center mb-1">
+                <span id="ServiceName">{{ rows[9] }}</span>
+              </div>
+              <div class="history-card-style col-6 text-center mb-1">
+                <span
+                  ><input
+                    class="text-center"
+                    type="text"
+                    id="input-text"
+                    [(ngModel)]="NextKilometer"
+                /></span>
+              </div>
+            </div>
+            <!-- here is our form -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          بستن
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="addCustomer()"
+          data-bs-dismiss="modal"
+          routerLink="login/adminpanel"
+        >
+          ثبت مشتری
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
