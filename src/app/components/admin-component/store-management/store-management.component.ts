@@ -12,7 +12,7 @@ import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection'
 })
 export class StoreManagementComponent implements OnInit {
   constructor(private service: AdminPanelCustomerManegementService) {}
- 
+  token: string | null;
   oilsum: number = 0;
   gearsum: number = 0;
   brakesum: number = 0;
@@ -199,20 +199,27 @@ export class StoreManagementComponent implements OnInit {
   }
 
   addToStore(): void {
-    this.service
-      .AddToStore({
-        airfilterbuyed: this.airfilternumber,
-        breakeoilbuyed: this.breakeoilnumber,
-        cabinfilterbuyed: this.cabinfilternumber,
-        engineoilbuyed: this.engineoilnumber,
-        gearboxoilbuyed: this.gearboxoilnumber,
-        hydraulicoilbuyed: this.hydraulicoilnumber,
-        oilfilterbuyed: this.oilfilternumber,
-        petrolfilterbuyed: this.petrolfilternumber,
-        untifreezbuyed: this.untifreeznumber,
-        userid: 1152,
-      })
-      .subscribe();
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service
+            .AddToStore({
+              airfilterbuyed: this.airfilternumber,
+              breakeoilbuyed: this.breakeoilnumber,
+              cabinfilterbuyed: this.cabinfilternumber,
+              engineoilbuyed: this.engineoilnumber,
+              gearboxoilbuyed: this.gearboxoilnumber,
+              hydraulicoilbuyed: this.hydraulicoilnumber,
+              oilfilterbuyed: this.oilfilternumber,
+              petrolfilterbuyed: this.petrolfilternumber,
+              untifreezbuyed: this.untifreeznumber,
+              userid: o,
+            })
+            .subscribe();
+        });
+      });
+    });
+
     this.airfilternumber = 0;
     this.hydraulicoilnumber = 0;
     this.breakeoilnumber = 0;
@@ -234,80 +241,144 @@ export class StoreManagementComponent implements OnInit {
     this.loading = true;
     this.ngOnInit();
   }
-
   ngOnInit(): void {
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.oillist = res.map((o) => o.engineoilbuyed);
-      this.length = this.oillist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.oilsum = this.oillist[t] + this.oilsum;
-      }
-      this.buyedengineoilnumber$ = of(this.oilsum);
+    this.token = localStorage.getItem('token');
+
+    this.service.GetStorename(this.token).subscribe((k: any) => {
+      of(k).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((res: IStore[]) => {
+            this.oillist = res.map((p) => p.engineoilbuyed);
+            this.length = this.oillist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.oilsum = this.oillist[t] + this.oilsum;
+            }
+            this.buyedengineoilnumber$ = of(this.oilsum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.gearlist = res.map((o) => o.gearboxoilbuyed);
-      this.length = this.gearlist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.gearsum = this.gearlist[t] + this.gearsum;
-      }
-      this.buyedgearboxoilnumber$ = of(this.gearsum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.gearlist = k.map((p) => p.gearboxoilbuyed);
+            this.length = this.gearlist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.gearsum = this.gearlist[t] + this.gearsum;
+            }
+            this.buyedgearboxoilnumber$ = of(this.gearsum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.cabinlist = res.map((o) => o.cabinfilterbuyed);
-      this.length = this.cabinlist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.cabinsum = this.cabinlist[t] + this.cabinsum;
-      }
-      this.buyedcabinfilternumber$ = of(this.cabinsum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.cabinlist = k.map((p) => p.cabinfilterbuyed);
+            this.length = this.cabinlist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.cabinsum = this.cabinlist[t] + this.cabinsum;
+            }
+            this.buyedcabinfilternumber$ = of(this.cabinsum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.airlist = res.map((o) => o.airfilterbuyed);
-      this.length = this.airlist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.airsum = this.airlist[t] + this.airsum;
-      }
-      this.buyedairfilternumber$ = of(this.airsum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.airlist = k.map((p) => p.airfilterbuyed);
+            this.length = this.airlist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.airsum = this.airlist[t] + this.airsum;
+            }
+            this.buyedairfilternumber$ = of(this.airsum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.freezlist = res.map((o) => o.untifreezbuyed);
-      this.length = this.freezlist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.freezsum = this.freezlist[t] + this.freezsum;
-      }
-      this.buyeduntifreeznumber$ = of(this.freezsum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.freezlist = k.map((p) => p.untifreezbuyed);
+            this.length = this.freezlist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.freezsum = this.freezlist[t] + this.freezsum;
+            }
+            this.buyeduntifreeznumber$ = of(this.freezsum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.hydrolist = res.map((o) => o.hydraulicoilbuyed);
-      this.length = this.hydrolist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.hydrosum = this.hydrolist[t] + this.hydrosum;
-      }
-      this.buyedhydraulicoilnumber$ = of(this.hydrosum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.hydrolist = k.map((p) => p.hydraulicoilbuyed);
+            this.length = this.hydrolist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.hydrosum = this.hydrolist[t] + this.hydrosum;
+            }
+            this.buyedhydraulicoilnumber$ = of(this.hydrosum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.oilflist = res.map((o) => o.oilfilterbuyed);
-      this.length = this.oilflist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.oilfsum = this.oilflist[t] + this.oilfsum;
-      }
-      this.buyedoilfilternumber$ = of(this.oilfsum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.oilflist = k.map((p) => p.oilfilterbuyed);
+            this.length = this.oilflist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.oilfsum = this.oilflist[t] + this.oilfsum;
+            }
+            this.buyedoilfilternumber$ = of(this.oilfsum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.petrollist = res.map((o) => o.petrolfilterbuyed);
-      this.length = this.petrollist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.petrolsum = this.petrollist[t] + this.petrolsum;
-      }
-      this.buyedpetrolfilternumber$ = of(this.petrolsum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.petrollist = k.map((p) => p.petrolfilterbuyed);
+            this.length = this.petrollist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.petrolsum = this.petrollist[t] + this.petrolsum;
+            }
+            this.buyedpetrolfilternumber$ = of(this.petrolsum);
+          });
+        });
+      });
     });
-    this.service.GetStore(1152).subscribe((res: IStore[]) => {
-      this.breaklist = res.map((o) => o.breakeoilbuyed);
-      this.length = this.breaklist.length;
-      for (let t = 0; t < this.length; t++) {
-        this.brakesum = this.breaklist[t] + this.brakesum;
-      }
-      this.buyedbreakeoilnumber$ = of(this.brakesum);
+
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service.GetStore(o).subscribe((k: IStore[]) => {
+            this.breaklist = k.map((p) => p.breakeoilbuyed);
+            this.length = this.breaklist.length;
+            for (let t = 0; t < this.length; t++) {
+              this.brakesum = this.breaklist[t] + this.brakesum;
+            }
+            this.buyedbreakeoilnumber$ = of(this.brakesum);
+          });
+        });
+      });
     });
+
     this.loading = false;
   }
 }
