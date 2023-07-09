@@ -19,7 +19,4 @@ export class LoginComponent {
       localStorage.setItem('token', token);
     });
   }
-  GetMe(){
-    this.service.GetMe().subscribe((res:string) => console.log(res));
-  }
 }

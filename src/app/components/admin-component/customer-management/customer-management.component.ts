@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import ICustomerCarService from 'src/app/InterFaces/ICustomerCarService';
 import { AdminPanelCustomerManegementService } from 'src/app/services/admin-panel-customer-manegement.service';
@@ -30,22 +30,17 @@ export class CustomerManagementComponent implements OnInit {
     this.CarServices.hydraulicoil,
   ];
   token: string | null;
-  storename:string;
-  userid:number = 1194;
+  userid: number;
+  name: string;
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
-    if (this.token != null) {
-      this.service.GetStorename(this.token).subscribe((res: any) => {
-        this.storename = res;
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.CustomerList$ = this.service.GetCustomers(o);
+        });
       });
-      this.service.GetUserid(this.storename).subscribe((res: any) => {
-        this.userid = res;
-      });
-      console.log(this.userid);
-      this.CustomerList$ = this.service.GetCustomers(this.userid);
-      this.loading = false;
-    } else {
-      this.loading = true;
-    }
+    });
+    this.loading = false;
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import ICustomerCarService from '../InterFaces/ICustomerCarService';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
 import IRegister from '../InterFaces/IRegister';
 import { ILogin } from '../InterFaces/ILogin';
 import IStore from '../InterFaces/IStore';
@@ -62,10 +62,10 @@ export class AdminPanelCustomerManegementService {
         `/CustomerManegement/get-userid?storename=${storename}`
     );
   }
-  public GetCustomers(
+ public GetCustomers(
     userid:number
-  ): Observable<ICustomerCarService[]> {
-    return this.http.get<ICustomerCarService[]>(
+  ):Observable<ICustomerCarService[]> {
+     return  this.http.get<ICustomerCarService[]>(
       this.oilexchangeserverurl +
         `/CustomerManegement/getcustomers?userid=${userid}`
     );
