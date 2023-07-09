@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, of } from 'rxjs';
 import { AdminPanelCustomerManegementService } from 'src/app/services/admin-panel-customer-manegement.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AdminPanelCustomerManegementService } from 'src/app/services/admin-pane
 export class AdminPanelComponent implements OnInit {
   constructor(private service: AdminPanelCustomerManegementService) {}
 
-  storename$:Observable<string>;
+  storename$: Observable<string>;
 
   showcomponent1: boolean = true;
   showcomponent2: boolean = false;
@@ -46,6 +46,8 @@ export class AdminPanelComponent implements OnInit {
   token: string | undefined | null;
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
-    this.storename$ = this.service.GetStorename(this.token);
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      this.storename$ = of(res);
+    });
   }
 }

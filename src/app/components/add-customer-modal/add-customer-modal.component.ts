@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { of } from 'rxjs';
 import { AdminPanelCustomerManegementService } from 'src/app/services/admin-panel-customer-manegement.service';
 import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection';
 
@@ -9,7 +10,9 @@ import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection'
 })
 export class AddCustomerModalComponent implements OnInit {
   constructor(private service: AdminPanelCustomerManegementService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.token = localStorage.getItem('token');
+  }
   carServices: CarServiesCollection = new CarServiesCollection();
   rows: string[] = [
     this.carServices.EngineOilName,
@@ -36,28 +39,33 @@ export class AddCustomerModalComponent implements OnInit {
   PreviouseKilometer: string = '';
   NextKilometer: string = '';
   plaque: string = '';
-  userid: number = 1152;
   servicedate: Date = new Date();
   hydraulicoil: string = '';
-
+  token: string | null;
   addCustomer(): void {
-    this.service
-      .AddCustomer({
-        plaque: this.plaque,
-        servicedate: this.servicedate,
-        engineoil: this.enginoil,
-        gearboxoil: this.GearBoxOil,
-        cabinfilter: this.CabinFilter,
-        oilfilter: this.OilFilter,
-        airfilter: this.AirFilter,
-        petrolfilter: this.PetrolFilter,
-        breakeoil: this.BrakeOil,
-        untifreez: this.UntiFreeze,
-        previouskilometer: this.PreviouseKilometer,
-        nextkilometer: this.NextKilometer,
-        userid: 1152,
-        hydraulicoil: this.hydraulicoil,
-      })
-      .subscribe();
+    this.service.GetStorename(this.token).subscribe((res: any) => {
+      of(res).subscribe((y: any) => {
+        this.service.GetUserid(y).subscribe((o: any) => {
+          this.service
+          .AddCustomer({
+            plaque: this.plaque,
+            servicedate: this.servicedate,
+            engineoil: this.enginoil,
+            gearboxoil: this.GearBoxOil,
+            cabinfilter: this.CabinFilter,
+            oilfilter: this.OilFilter,
+            airfilter: this.AirFilter,
+            petrolfilter: this.PetrolFilter,
+            breakeoil: this.BrakeOil,
+            untifreez: this.UntiFreeze,
+            previouskilometer: this.PreviouseKilometer,
+            nextkilometer: this.NextKilometer,
+            hydraulicoil: this.hydraulicoil,
+            userid:o
+          })
+          .subscribe();
+        });
+      });
+    })
   }
 }
