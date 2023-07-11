@@ -8,7 +8,9 @@ import { AdminPanelCustomerManegementService } from 'src/app/services/admin-pane
   styleUrls: ['./admin-panel.component.css'],
 })
 export class AdminPanelComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService) {}
+  constructor(private service: AdminPanelCustomerManegementService) {
+    
+  }
 
   storename$: Observable<string>;
 
@@ -45,6 +47,7 @@ export class AdminPanelComponent implements OnInit {
   }
   token: string | undefined | null;
   ngOnInit(): void {
+    
     this.token = localStorage.getItem('token');
     this.service.GetStorename(this.token).subscribe((res: any) => {
       this.storename$ = of(res);
