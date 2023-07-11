@@ -4,7 +4,7 @@ export default class CustomerCarService implements ICustomerCarService{
     id?: number | undefined;
     hydraulicoil: string;
     plaque = '';
-    servicedate = new Date();
+    servicedate = '';
     engineoil='';
     gearboxoil = '';
     cabinfilter = '';

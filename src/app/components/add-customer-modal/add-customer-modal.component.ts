@@ -39,7 +39,7 @@ export class AddCustomerModalComponent implements OnInit {
   PreviouseKilometer: string = '';
   NextKilometer: string = '';
   plaque: string = '';
-  servicedate: Date = new Date();
+  servicedate: '';
   hydraulicoil: string = '';
   token: string | null;
   addCustomer(): void {

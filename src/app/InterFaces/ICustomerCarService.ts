@@ -1,6 +1,6 @@
 export default interface ICustomerCarService {
   plaque: string;
-  servicedate: Date;
+  servicedate: string;
   engineoil: string;
   gearboxoil: string;
   cabinfilter: string;

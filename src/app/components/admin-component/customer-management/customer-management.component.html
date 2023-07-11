@@ -18,9 +18,9 @@
     >
       <div class="card mt-5" style="width: 18rem">
         <div class="card-body">
-          <h5 class="card-title text-center">
-            {{ item.plaque }} - {{ item.userid }} - {{ item.servicedate }}
-          </h5>
+          <p class="card-title text-center fw-bolder">
+          {{ item.servicedate.split('T')[0] }}
+          </p>
           <div class="row d-flex justify-content-between mt-2">
             <div class="carrd history-card-style col-5 text-center">
               <span id="ServiceName">{{ rows[0] }}</span>
