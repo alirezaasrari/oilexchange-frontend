@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import ICustomerCarService from 'src/app/InterFaces/ICustomerCarService';
@@ -11,7 +12,7 @@ import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection'
   styleUrls: ['./customer-management.component.css'],
 })
 export class CustomerManagementComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService) {}
+  constructor(private service: AdminPanelCustomerManegementService,private router: Router) {}
 
   CustomerList$: Observable<ICustomerCarService[]>;
   loading: boolean = true;
@@ -34,13 +35,18 @@ export class CustomerManagementComponent implements OnInit {
   name: string;
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
-    this.service.GetStorename(this.token).subscribe((res: any) => {
-      of(res).subscribe((y: any) => {
-        this.service.GetUserid(y).subscribe((o: any) => {
-          this.CustomerList$ = this.service.GetCustomers(o);
+    if(this.token != null ){
+      this.service.GetStorename(this.token).subscribe((res: any) => {
+        of(res).subscribe((y: any) => {
+          this.service.GetUserid(y).subscribe((o: any) => {
+            this.CustomerList$ = this.service.GetCustomers(o);
+          });
         });
       });
-    });
-    this.loading = false;
+      this.loading = false;
+    }else{
+      console.log(this.token);
+    }
+    
   }
 }
