@@ -2,56 +2,74 @@
 <table class="table" *ngIf="!loading">
   <thead>
     <tr>
+      <th scope="col" class="text-center fw-bolder">شماره</th>
       <th scope="col" class="text-center fw-bolder">نام</th>
-      <th scope="col" class="text-center fw-bolder"> خریده شده</th>
-      <th scope="col" class="text-center fw-bolder">فروخته شده </th>
+      <th scope="col" class="text-center fw-bolder">خریده شده</th>
+      <th scope="col" class="text-center fw-bolder">فروخته شده</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th class="text-center fw-bold" scope="row" >روغن موتور</th>
-      <td class="text-center fw-bold">{{buyedengineoilnumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledengineoilnumber}}</td>
+      <th class="text-center fw-bold" scope="row"> 1</th>
+      <th class="text-center fw-bold" scope="row">روغن موتور</th>
+      <td class="text-center fw-bold">{{ buyedengineoilnumber$ | async }}</td>
+      <td class="text-center fw-bold">{{ selledengineoilnumber }}</td>
     </tr>
     <tr>
+      <th class="text-center fw-bold" scope="row"> 2</th>
       <th class="text-center fw-bold" scope="row">روغن گیربکس</th>
-      <td class="text-center fw-bold">{{buyedgearboxoilnumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledgearboxoilnumber}}</td>
+      <td class="text-center fw-bold">{{ buyedgearboxoilnumber$ | async }}</td>
+      <td class="text-center fw-bold">{{ selledgearboxoilnumber }}</td>
     </tr>
     <tr>
+      <th class="text-center fw-bold" scope="row"> 3</th>
       <th class="text-center fw-bold" scope="row">روغن ترمز</th>
-      <td class="text-center fw-bold">{{buyedbreakeoilnumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledbreakeoilnumber}}</td>
+      <td class="text-center fw-bold">{{ buyedbreakeoilnumber$ | async }}</td>
+      <td class="text-center fw-bold">{{ selledbreakeoilnumber }}</td>
     </tr>
     <tr>
-      <th class="text-center fw-bold" scope="row">ضد یخ</th>
-      <td class="text-center fw-bold">{{buyeduntifreeznumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selleduntifreeznumber}}</td>
-    </tr>
-    <tr>
+      <th class="text-center fw-bold" scope="row"> 4</th>
       <th class="text-center fw-bold" scope="row">فیلتر هوا</th>
-      <td class="text-center fw-bold">{{buyedairfilternumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledairfilternumber}}</td>
+      <td class="text-center fw-bold">{{ buyedairfilternumber$ | async }}</td>
+      <td class="text-center fw-bold">{{ selledairfilternumber }}</td>
     </tr>
     <tr>
+      <th class="text-center fw-bold" scope="row"> 5</th>
       <th class="text-center fw-bold" scope="row">فیلتر کابین</th>
-      <td class="text-center fw-bold">{{buyedcabinfilternumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledcabinfilternumber}}</td>
+      <td class="text-center fw-bold">{{ buyedcabinfilternumber$ | async }}</td>
+      <td class="text-center fw-bold">{{ selledcabinfilternumber }}</td>
     </tr>
     <tr>
+      <th class="text-center fw-bold" scope="row"> 6</th>
       <th class="text-center fw-bold" scope="row">فیلتر روغن</th>
-      <td class="text-center fw-bold">{{buyedoilfilternumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledoilfilternumber}}</td>
+      <td class="text-center fw-bold">{{ buyedoilfilternumber$ | async }}</td>
+      <td class="text-center fw-bold">{{ selledoilfilternumber }}</td>
     </tr>
     <tr>
+      <th class="text-center fw-bold" scope="row"> 7</th>
       <th class="text-center fw-bold" scope="row">فیلتر بنزین</th>
-      <td class="text-center fw-bold">{{buyedpetrolfilternumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledpetrolfilternumber}}</td>
+      <td class="text-center fw-bold">
+        {{ buyedpetrolfilternumber$ | async }}
+      </td>
+      <td class="text-center fw-bold">{{ selledpetrolfilternumber }}</td>
     </tr>
     <tr>
-      <th class="text-center fw-bold" scope="row">روغن هیدرولیک </th>
-      <td class="text-center fw-bold">{{buyedhydraulicoilnumber$ | async}}</td>
-      <td class="text-center fw-bold">{{selledhydraulicoilnumber}}</td>
+      <th class="text-center fw-bold" scope="row"> 8</th>
+      <th class="text-center fw-bold" scope="row">ضد یخ</th>
+      <td class="text-center fw-bold">{{ buyeduntifreeznumber$ | async }}</td>
+      <td class="text-center fw-bold">{{ selleduntifreeznumber }}</td>
+    </tr>
+   
+    
+    
+    
+    <tr>
+      <th class="text-center fw-bold" scope="row"> 9</th>
+      <th class="text-center fw-bold" scope="row">روغن هیدرولیک</th>
+      <td class="text-center fw-bold">
+        {{ buyedhydraulicoilnumber$ | async }}
+      </td>
+      <td class="text-center fw-bold">{{ selledhydraulicoilnumber }}</td>
     </tr>
   </tbody>
 </table>
@@ -81,11 +99,66 @@
             <div class="card-body">
               <h5 class="card-title text-center">افزودن به انبار</h5>
               <!-- here we put our modal object -->
-              <div class="row d-flex justify-content-between mt-2" >
-                <input placeholder="تعداد" type="number" [(ngModel)]='number' >
-                <select (change)="selectHandler($event)" style="margin-top: 10px;" *ngIf="number>0 ? true : false">
-                  <option *ngFor="let row of rows2" >{{row}}</option>
-                </select>
+              <div class="row d-flex justify-content-between mt-2">
+                <label for="">{{ rows2[1] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="engineoilnumber"
+                />
+                <label for="">{{ rows2[2] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="gearboxoilnumber"
+                />
+                <label for="">{{ rows2[3] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="breakeoilnumber"
+                />
+                <label for="">{{ rows2[4] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="airfilternumber"
+                />
+                <label for="">{{ rows2[5] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="cabinfilternumber"
+                />
+                <label for="">{{ rows2[6] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="oilfilternumber"
+                />
+                <label for="">{{ rows2[7] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="petrolfilternumber"
+                />
+                <label for="">{{ rows2[8] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="untifreeznumber"
+                />
+                <label for="">{{ rows2[9] }}</label>
+                <input
+                  placeholder="تعداد"
+                  type="number"
+                  [(ngModel)]="hydraulicoilnumber"
+                />
+                <!-- <select (change)="selectHandler($event)" style="margin-top: 10px;" *ngIf="number > 0 ? true : false"> -->
+                <!-- <select style="margin-top: 10px;" [value]="engineoilnumber" > -->
+                <!-- <option *ngFor="let row of rows2" >{{row}}</option> -->
+                <!-- <option selected>{{rows2[1]}}</option> -->
+                <!-- </select> -->
               </div>
               <!-- end of our modal -->
             </div>
@@ -95,7 +168,26 @@
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
             بستن
           </button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addToStore()">ثبت</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            (click)="
+              addToStore(
+                engineoilnumber,
+                gearboxoilnumber,
+                breakeoilnumber,
+                airfilternumber,
+                cabinfilternumber,
+                oilfilternumber,
+                petrolfilternumber,
+                untifreeznumber,
+                hydraulicoilnumber
+              )
+            "
+          >
+            ثبت
+          </button>
         </div>
       </div>
     </div>
