@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { AdminPanelCustomerManegementService } from 'src/app/services/admin-panel-customer-manegement.service';
 import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection';
@@ -9,7 +10,7 @@ import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection'
   styleUrls: ['./add-customer-modal.component.css'],
 })
 export class AddCustomerModalComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService) {}
+  constructor(private service: AdminPanelCustomerManegementService,private router: Router) {}
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
   }

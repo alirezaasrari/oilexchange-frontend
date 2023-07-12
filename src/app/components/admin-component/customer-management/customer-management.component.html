@@ -1,3 +1,4 @@
+
 <app-loading *ngIf="loading"></app-loading>
 <div class="container" *ngIf="!loading">
 
@@ -7,7 +8,264 @@
     >
       <div class="card mt-5" style="width: 18rem" >
         <div class="card-body d-flex justify-content-center m-5">
-          <app-add-customer-modal></app-add-customer-modal>
+          
+          <!--modal component -->
+<button
+type="button"
+class="add-button"
+data-bs-toggle="modal"
+data-bs-target="#exampleModal"
+data-bs-whatever="@mdo"
+>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="68"
+  height="68"
+  fill="royalblue"
+  class="bi bi-plus-lg"
+  viewBox="0 0 16 16"
+>
+  <path
+    fill-rule="evenodd"
+    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+  />
+</svg>
+</button>
+
+<div
+class="modal fade was-validated"
+id="exampleModal"
+tabindex="-1"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body d-flex justify-content-center">
+      <div class="card mt-5" style="width: 18rem">
+        <div class="card-body">
+          <!-- plaque -->
+          <div class="container plaque-container">
+            <div class="row">
+              <!--start plaque flag-->
+              <div class="col-3 d-flex align-items-center justify-content-center">
+                <div>
+                  <div class="pe-2">
+                    <p class="fs-5 text-center">ایران</p>
+                  </div>
+                  <div class="row">
+                    <div style="padding-right: 20px" class="col-6 mb-2">
+                      <input id="width-input" class="d-flex justify-content-center" type="number" maxlength="1" placeholder="____"
+                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" />
+                    </div>
+                    <div class="col-6"><input id="width-input" class="d-flex justify-content-center" type="number" maxlength="1"
+                        placeholder="____" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" /></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 d-flex align-items-center justify-content-center">
+                <div class="row">
+                  <div class="col-4" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                      type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                      onKeyPress="if(this.value.length==1) return false;" /></div>
+                  <div class="col-4" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                      type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                      onKeyPress="if(this.value.length==1) return false;" /></div>
+                  <div class="col-4" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                      type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                      onKeyPress="if(this.value.length==1) return false;" /></div>
+                </div>
+              </div>
+              <div class="col-3 d-flex align-items-center justify-content-center">
+                <!--alphabet selector-->
+                <div>
+                  <select  class="" aria-label="Default select example">
+                    <option selected *ngFor="let alphabet of alphaBets">{{ alphabet }}</option>
+                   
+                  </select>
+                </div>
+              </div>
+              <div class="col-3 d-flex align-items-center justify-content-center">
+                <div class="row">
+                  <div class="col-6" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                      type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                      onKeyPress="if(this.value.length==1) return false;" /></div>
+                  <div class="col-6" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                      type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                      onKeyPress="if(this.value.length==1) return false;" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- plaque -->
+          <div class="row d-flex justify-content-between mt-2">
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[0] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="enginoil"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[1] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="GearBoxOil"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[2] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="BrakeOil"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[3] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="AirFilter"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[4] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="CabinFilter"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[10] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="hydraulicoil"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[5] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="OilFilter"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[6] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="PetrolFilter"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[7] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="UntiFreeze"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[8] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="PreviouseKilometer"
+              /></span>
+            </div>
+
+            <div class="history-card-style col-5 text-center mb-1">
+              <span id="ServiceName">{{ rows[9] }}</span>
+            </div>
+            <div class="history-card-style col-6 text-center mb-1">
+              <span
+                ><input
+                  class="text-center"
+                  type="text"
+                  id="input-text"
+                  [(ngModel)]="NextKilometer"
+              /></span>
+            </div>
+          </div>
+          <!-- here is our form -->
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+        بستن
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="addCustomer()"
+        data-bs-dismiss="modal"
+      >
+        ثبت مشتری
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--end of modal component -->
+
+
         </div>
       </div>
     </div>
@@ -21,9 +279,64 @@
           <p class="card-title text-center fw-bolder">
           {{ item.servicedate.split('T')[0] }}
           </p>
+                        <!--plaque show card -->
+                        <div class="container plaque-container">
+                          <div class="row">
+                            <!--start plaque flag-->
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                              <div>
+                                <div class="pe-2">
+                                  <p class="fs-5 text-center">ایران</p>
+                                </div>
+                                <div class="row">
+                                  <div style="padding-right: 20px" class="col-6 mb-2">
+                                    <input id="width-input" class="d-flex justify-content-center" type="number" maxlength="1" placeholder="____"
+                                      pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" />
+                                  </div>
+                                  <div class="col-6"><input  id="width-input" class="d-flex justify-content-center" type="number" maxlength="1"
+                                      placeholder="____" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" /></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                              <div class="row">
+                                <div class="col-4" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                                    type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;" /></div>
+                                <div class="col-4" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                                    type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;" /></div>
+                                <div class="col-4" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                                    type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;" /></div>
+                              </div>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                              <!--alphabet selector-->
+                              <div>
+                                <select  class="" aria-label="Default select example">
+                                  <option selected *ngFor="let alphabet of alphaBets">{{ alphabet }}</option>
+                                 
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                              <div class="row">
+                                <div class="col-6" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                                    type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;" /></div>
+                                <div class="col-6" style="padding: 0px"><input id="width-input" class="d-flex justify-content-center"
+                                    type="number" maxlength="1" placeholder="____" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;" /></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--END OF PLAQUE SHOW CARD-->
           <div class="row d-flex justify-content-between mt-2">
             <div class="carrd history-card-style col-5 text-center">
               <span id="ServiceName">{{ rows[0] }}</span>
+              
             </div>
             <div class="carrd history-card-style col-5 text-center">
               <span id="ServiceName">{{ item.engineoil }}</span>

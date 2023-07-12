@@ -9,7 +9,10 @@ import { AdminPanelCustomerManegementService } from 'src/app/services/admin-pane
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private router: Router,private service: AdminPanelCustomerManegementService) {}
+  constructor(
+    private router: Router,
+    private service: AdminPanelCustomerManegementService
+  ) {}
   storename: string = '';
   pass: string = '';
   loginrequest: LoginRequest = new LoginRequest();
@@ -20,6 +23,5 @@ export class LoginComponent {
       localStorage.setItem('token', token);
       this.router.navigate(['/login/adminpanel']);
     });
-    
   }
 }
