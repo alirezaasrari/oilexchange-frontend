@@ -29,11 +29,12 @@ import { StoreManagementComponent } from './components/admin-component/store-man
 import { AnalizeManagementComponent } from './components/admin-component/analize-management/analize-management.component';
 import { PromoteManagementComponent } from './components/admin-component/promote-management/promote-management.component';
 import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AddCustomerModalComponent } from './components/add-customer-modal/add-customer-modal.component';
 import { PlaqueSmallComponent } from './components/plaque-small/plaque-small.component';
-// import { Interceptor } from './services/Interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     PlaqueSmallComponent,
     LoadingComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, FormsModule, AppRoutingModule],
+  imports: [HttpClientModule, BrowserModule, FormsModule, AppRoutingModule,MatSnackBarModule, BrowserAnimationsModule],
   providers: [
     // {
     //   provide: HTTP_INTERCEPTORS,

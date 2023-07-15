@@ -12,6 +12,7 @@ export class AdminPanelComponent implements OnInit {
   constructor(private service: AdminPanelCustomerManegementService) {}
 
   storename$: Observable<string>;
+  userid$:Observable<number>;
 
   showcomponent1: boolean = true;
   showcomponent2: boolean = false;
@@ -44,11 +45,15 @@ export class AdminPanelComponent implements OnInit {
   clear() {
     localStorage.clear();
   }
-  token: string | undefined | null;
+  token: any;
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
-    this.service.GetStorename(this.token).subscribe((res: any) => {
-      this.storename$ = of(res);
+    this.service.GetUserid(this.token).subscribe((res:any) => {
+      of(res).subscribe((t:any) =>{
+        this.storename$ = this.service.GetStorename(t);
+      })
     });
+    
+    
   }
 }

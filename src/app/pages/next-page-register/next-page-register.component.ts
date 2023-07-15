@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RegisterRequst } from 'src/app/Models/RegisterRequest';
 import { AdminPanelCustomerManegementService } from 'src/app/services/admin-panel-customer-manegement.service';
 
@@ -8,20 +9,24 @@ import { AdminPanelCustomerManegementService } from 'src/app/services/admin-pane
   styleUrls: ['./next-page-register.component.css'],
 })
 export class NextPageRegisterComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService) {}
+  constructor(private service: AdminPanelCustomerManegementService ,private _snackBar: MatSnackBar) {}
   password: string = '';
   storename: string = '';
   phone: string = '';
   confirmpassword: string = '';
 
   registerrequest: RegisterRequst = new RegisterRequst();
-
-  onRegister(phone:string,storename:string,password:string,confirmpassword:string): void {
-    this.registerrequest.pass = password;
-    this.registerrequest.storename = storename;
-    this.registerrequest.phonenumber = phone;
-    this.registerrequest.registereddate = new Date();
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: ['green-snackbar'],
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
+  onRegister(): void {
     this.service.Register(this.registerrequest).subscribe();
+    this.openSnackBar("kjhjkhkj");
   }
   ngOnInit(): void {
     

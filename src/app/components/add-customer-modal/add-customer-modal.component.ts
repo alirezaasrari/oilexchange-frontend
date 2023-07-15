@@ -42,11 +42,9 @@ export class AddCustomerModalComponent implements OnInit {
   plaque: string = '';
   servicedate: '';
   hydraulicoil: string = '';
-  token: string | null;
+  token: any;
   addCustomer(): void {
-    this.service.GetStorename(this.token).subscribe((res: any) => {
-      of(res).subscribe((y: any) => {
-        this.service.GetUserid(y).subscribe((o: any) => {
+        this.service.GetUserid(this.token).subscribe((o: any) => {
           this.service
           .AddCustomer({
             plaque: this.plaque,
@@ -66,7 +64,5 @@ export class AddCustomerModalComponent implements OnInit {
           })
           .subscribe();
         });
-      });
-    })
   }
 }

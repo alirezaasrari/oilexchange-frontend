@@ -54,19 +54,22 @@ export class AdminPanelCustomerManegementService {
       { headers }
     );
   }
-  public GetStorename(token: string | undefined | null): Observable<string> {
+  public GetStorename(userid:number): Observable<string> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
     return this.http.get(
-      this.oilexchangeserverurl + `/Store/getstorename?token=${token}`,
-      { responseType: 'text' }
+      this.oilexchangeserverurl + `/Store/getstorename?request=${userid}`,
+      { responseType: 'text',headers }
     );
   }
-  public GetUserid(storename: string): Observable<number> {
+  public GetUserid(token: string): Observable<number> {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
     return this.http.get<number>(
       this.oilexchangeserverurl +
-        `/CustomerManegement/get-userid?storename=${storename}`,
+        `/Store/get-userid?token=${token}`,
       { headers }
     );
   }

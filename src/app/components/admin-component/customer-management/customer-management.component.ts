@@ -64,7 +64,7 @@ export class CustomerManagementComponent implements OnInit {
     'ه',
     'ی',
   ];
-  token: string | null;
+  token: any;
   userid: number;
   name: string;
   enginoil: string = '';
@@ -81,9 +81,7 @@ export class CustomerManagementComponent implements OnInit {
   servicedate: '';
   hydraulicoil: string = '';
   addCustomer(): void {
-    this.service.GetStorename(this.token).subscribe((res: any) => {
-      of(res).subscribe((y: any) => {
-        this.service.GetUserid(y).subscribe((o: any) => {
+        this.service.GetUserid(this.token).subscribe((o: any) => {
           this.service
             .AddCustomer({
               plaque: this.plaque,
@@ -103,23 +101,15 @@ export class CustomerManagementComponent implements OnInit {
             })
             .subscribe();
         });
-      });
-    });
     this.ngOnInit();
   }
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
-    if (this.token != null) {
-      this.service.GetStorename(this.token).subscribe((res: any) => {
-        of(res).subscribe((y: any) => {
-          this.service.GetUserid(y).subscribe((o: any) => {
-            this.CustomerList$ = this.service.GetCustomers(o);
+          this.service.GetUserid(this.token).subscribe((o: any) => {
+          of(o).subscribe((y:any)=>{
+            this.CustomerList$ = this.service.GetCustomers(y);
+          }) 
           });
-        });
-      });
       this.loading = false;
-    } else {
-      console.log(this.token);
-    }
   }
 }

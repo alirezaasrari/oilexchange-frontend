@@ -7,7 +7,7 @@
           class="form-control"
           id="floatingPassword"
           placeholder="تلفن"
-          [(ngModel)]="phone"
+          [(ngModel)]="registerrequest.phonenumber"
         />
         <label for="floatingPassword1">تلفن</label>
       </div>
@@ -17,13 +17,13 @@
           class="form-control"
           id="floatingPassword1"
           placeholder="نام مغازه"
-          [(ngModel)]="storename"
+          [(ngModel)]="registerrequest.storename"
         />
         <label for="floatingPassword2">نام مغازه</label>
       </div>
       <div class="form-floating mt-3">
         <input
-          [(ngModel)]="password"
+          [(ngModel)]="registerrequest.pass"
           type="password"
           class="form-control"
           id="floatingPassword2"
@@ -44,7 +44,7 @@
     </div>
     <div class="row d-flex justify-content-center pb-1">
       <button
-        (click)="onRegister(phone,storename,password,confirmpassword)"
+        (click)="onRegister()"
         routerLink="/login"
         class="login-to-crm mt-3"
       >
