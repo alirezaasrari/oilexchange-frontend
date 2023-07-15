@@ -20,7 +20,6 @@ export class NextPageRegisterComponent implements OnInit {
     this.registerrequest.pass = password;
     this.registerrequest.storename = storename;
     this.registerrequest.phonenumber = phone;
-    this.registerrequest.confirmpass = confirmpassword;
     this.registerrequest.registereddate = new Date();
     this.service.Register(this.registerrequest).subscribe();
   }

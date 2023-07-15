@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environment/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import ICustomerCarService from '../InterFaces/ICustomerCarService';
-import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import IRegister from '../InterFaces/IRegister';
 import { ILogin } from '../InterFaces/ILogin';
 import IStore from '../InterFaces/IStore';
@@ -16,9 +16,13 @@ export class AdminPanelCustomerManegementService {
   constructor(private http: HttpClient) {}
 
   public AddCustomer(data: ICustomerCarService) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
     return this.http.post(
       this.oilexchangeserverurl + '/CustomerManegement/addcustomer',
-      data
+      data,
+      { headers }
     );
   }
   public Register(data: IRegister): Observable<any> {
@@ -32,20 +36,22 @@ export class AdminPanelCustomerManegementService {
       responseType: 'text',
     });
   }
-  public GetMe(): Observable<string> {
-    return this.http.get(this.oilexchangeserverurl + '/Auth', {
-      responseType: 'text',
-    });
-  }
   public AddToStore(data: IStore) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
     return this.http.post(
       this.oilexchangeserverurl + '/Store/addtostore',
-      data
+      data,{ headers }
     );
   }
   public GetStore(num: number): Observable<IStore[]> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
     return this.http.get<IStore[]>(
-      this.oilexchangeserverurl + `/Store/getstore?request=${num}`
+      this.oilexchangeserverurl + `/Store/getstore?request=${num}`,
+      { headers }
     );
   }
   public GetStorename(token: string | undefined | null): Observable<string> {
@@ -54,20 +60,24 @@ export class AdminPanelCustomerManegementService {
       { responseType: 'text' }
     );
   }
-  public GetUserid(
-    storename:string
-  ): Observable<number> {
+  public GetUserid(storename: string): Observable<number> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
     return this.http.get<number>(
       this.oilexchangeserverurl +
-        `/CustomerManegement/get-userid?storename=${storename}`
+        `/CustomerManegement/get-userid?storename=${storename}`,
+      { headers }
     );
   }
- public GetCustomers(
-    userid:number
-  ):Observable<ICustomerCarService[]> {
-     return  this.http.get<ICustomerCarService[]>(
+  public GetCustomers(userid: number): Observable<ICustomerCarService[]> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get<ICustomerCarService[]>(
       this.oilexchangeserverurl +
-        `/CustomerManegement/getcustomers?userid=${userid}`
+        `/CustomerManegement/getcustomers?userid=${userid}`,
+      { headers }
     );
   }
 }

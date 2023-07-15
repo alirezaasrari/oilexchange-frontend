@@ -6,12 +6,12 @@
           class="form-control"
           id="floatingPassword"
           placeholder="نام مغازه"
-          [(ngModel)]="storename"
+          [(ngModel)]="loginrequest.Phonenumber"
           minlength="3"
           pattern="[a-zA-Z ]*"
           type="text"
         />
-        <label for="floatingPassword">نام مغازه</label>
+        <label for="floatingPassword">شماره تلفن</label>
       </div>
       <div class="form-floating mt-3">
         <input
@@ -21,13 +21,13 @@
           class="form-control"
           id="floatingPassword1"
           placeholder="رمز ورود"
-          [(ngModel)]="pass"
+          [(ngModel)]="loginrequest.pass"
         />
         <label for="floatingPassword1">رمز ورود</label>
       </div>
     </div>
     <div class="row d-flex justify-content-center pb-1">
-      <button (click)="OnLOgin(storename, pass)" class="login-to-crm mt-3">
+      <button (click)="OnLOgin()" class="login-to-crm mt-3">
         ورود
       </button>
     </div>

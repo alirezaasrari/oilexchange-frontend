@@ -1,4 +1,4 @@
 export interface ILogin {
-  storename: string;
+  Phonenumber: string;
   pass: string;
 }

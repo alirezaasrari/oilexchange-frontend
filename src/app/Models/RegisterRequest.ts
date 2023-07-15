@@ -5,5 +5,4 @@ export class RegisterRequst implements IRegister {
   phonenumber = '';
   storename = '';
   pass = '';
-  confirmpass = '';
 }

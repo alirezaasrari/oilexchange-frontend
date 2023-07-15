@@ -94,119 +94,17 @@ export class StoreManagementComponent implements OnInit {
   buyedpetrolfilternumber$: Observable<number>;
   buyedgearboxoilnumber$: Observable<number>;
 
-  disable: boolean;
+  engineoiltotal:number = 0;
+  gearboxoiltotal:number = 0;
+  breakeoiltotal:number = 0;
+  airfiltertotal:number = 0;
+  cabinefiltertotal:number = 0;
+  oilfiltertotal:number = 0;
+  petrolfiltertotal:number = 0;
+  untifreeztotal:number = 0;
+  hydrolicoiltotal:number = 0;
 
-  // selectHandler(event: any): number {
-  //   if (this.Services.hydraulicoil == event.target.value) {
-  //     this.hydraulicoilnumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.hydraulicoilnumber;
-  //   }
-  //   else if (this.Services.AirFilterName == event.target.value) {
-  //     this.airfilternumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.hydraulicoilnumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.airfilternumber;
-  //   }
-  //   else if (this.Services.BrakeOilName == event.target.value) {
-  //     this.breakeoilnumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.hydraulicoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.breakeoilnumber;
-  //   }
-  //   else if (this.Services.CabinFilterName == event.target.value) {
-  //     this.cabinfilternumber = this.number;
-  //     this.hydraulicoilnumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.cabinfilternumber;
-  //   }
-  //   else if (this.Services.EngineOilName == event.target.value) {
-  //     this.engineoilnumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.hydraulicoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.engineoilnumber;
-  //   }
-  //   else if (this.Services.OilFilterName == event.target.value) {
-  //     this.oilfilternumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.hydraulicoilnumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.oilfilternumber;
-  //   }
-  //   else if (this.Services.UntiFreezeName == event.target.value) {
-  //     this.untifreeznumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.hydraulicoilnumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.untifreeznumber;
-  //   }
-  //   else if (this.Services.PetrolFilterName == event.target.value) {
-  //     this.petrolfilternumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.gearboxoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.hydraulicoilnumber = 0;
-  //     return this.petrolfilternumber;
-  //   }
-  //   else if (this.Services.GearBoxOilName == event.target.value) {
-  //     this.gearboxoilnumber = this.number;
-  //     this.cabinfilternumber = 0;
-  //     this.oilfilternumber = 0;
-  //     this.hydraulicoilnumber = 0;
-  //     this.untifreeznumber = 0;
-  //     this.airfilternumber = 0;
-  //     this.breakeoilnumber = 0;
-  //     this.engineoilnumber = 0;
-  //     this.petrolfilternumber = 0;
-  //     return this.gearboxoilnumber;
-  //   }
-  //   else return this.gearboxoilnumber = 10;
-  // };
+  disable: boolean;
 
   addToStore(a:number,b:number,c:number,d:number,e:number,f:number,g:number,h:number,i:number): void {
     this.service.GetStorename(this.token).subscribe((res: any) => {

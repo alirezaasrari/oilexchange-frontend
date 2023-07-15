@@ -13,12 +13,8 @@ export class LoginComponent {
     private router: Router,
     private service: AdminPanelCustomerManegementService
   ) {}
-  storename: string = '';
-  pass: string = '';
   loginrequest: LoginRequest = new LoginRequest();
-  OnLOgin(name: string, pass: string) {
-    this.loginrequest.storename = name;
-    this.loginrequest.pass = pass;
+  OnLOgin() {
     this.service.login(this.loginrequest).subscribe((token: string) => {
       localStorage.setItem('token', token);
       this.router.navigate(['/login/adminpanel']);

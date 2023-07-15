@@ -32,7 +32,7 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddCustomerModalComponent } from './components/add-customer-modal/add-customer-modal.component';
 import { PlaqueSmallComponent } from './components/plaque-small/plaque-small.component';
-import { Interceptor } from './services/Interceptor';
+// import { Interceptor } from './services/Interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
@@ -69,11 +69,11 @@ import { LoadingComponent } from './components/loading/loading.component';
   ],
   imports: [HttpClientModule, BrowserModule, FormsModule, AppRoutingModule],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: Interceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })
