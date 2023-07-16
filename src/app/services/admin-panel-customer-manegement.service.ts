@@ -83,4 +83,25 @@ export class AdminPanelCustomerManegementService {
       { headers }
     );
   }
+  public forgetpassword(phone: string): Observable<string> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get<string>(
+      this.oilexchangeserverurl +
+        `/Auth/forget-password?phone=${phone}`,
+      { headers }
+    );
+  }
+  public resetpassword(token: string,
+  pass: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get<any>(
+      this.oilexchangeserverurl +
+        `/Auth/Reset-password?userid`,
+      { headers }
+    );
+  }
 }
