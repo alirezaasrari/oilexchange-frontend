@@ -11,9 +11,16 @@ import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection'
   styleUrls: ['./customer-management.component.css'],
 })
 export class CustomerManagementComponent implements OnInit {
-  constructor(
-    private service: AdminPanelCustomerManegementService) {}
-
+  constructor(private service: AdminPanelCustomerManegementService) {}
+  alpha: string;
+  firstthCharecto: number;
+  secondCharecto: number;
+  thirdCharecto: string;
+  fourthCharecto: number;
+  fivethCharecto: number;
+  sixthCharecto: number;
+  seventhCharecto: number;
+  eightthCharecto: number;
   CustomerList$: Observable<ICustomerCarService[]>;
   loading: boolean = true;
   CarServices: CarServiesCollection = new CarServiesCollection();
@@ -64,6 +71,9 @@ export class CustomerManagementComponent implements OnInit {
     'ه',
     'ی',
   ];
+  selectAlphabetHandler(event: any) {
+    this.thirdCharecto = event.target.value;
+  }
   token: any;
   userid: number;
   name: string;
@@ -81,35 +91,47 @@ export class CustomerManagementComponent implements OnInit {
   servicedate: '';
   hydraulicoil: string = '';
   addCustomer(): void {
-        this.service.GetUserid(this.token).subscribe((o: any) => {
-          this.service
-            .AddCustomer({
-              plaque: this.plaque,
-              servicedate: this.servicedate,
-              engineoil: this.enginoil,
-              gearboxoil: this.GearBoxOil,
-              cabinfilter: this.CabinFilter,
-              oilfilter: this.OilFilter,
-              airfilter: this.AirFilter,
-              petrolfilter: this.PetrolFilter,
-              breakeoil: this.BrakeOil,
-              untifreez: this.UntiFreeze,
-              previouskilometer: this.PreviouseKilometer,
-              nextkilometer: this.NextKilometer,
-              hydraulicoil: this.hydraulicoil,
-              userid: o,
-            })
-            .subscribe();
+    this.service.GetUserid(this.token).subscribe((o: any) => {
+      this.service
+        .AddCustomer({
+          plaque:
+            this.firstthCharecto.toString() +
+            this.secondCharecto.toString() +
+            this.thirdCharecto +
+            this.fourthCharecto.toString() +
+            this.fivethCharecto.toString() +
+            this.sixthCharecto.toString() +
+            this.seventhCharecto.toString() +
+            this.eightthCharecto.toString(),
+          servicedate: this.servicedate,
+          engineoil: this.enginoil,
+          gearboxoil: this.GearBoxOil,
+          cabinfilter: this.CabinFilter,
+          oilfilter: this.OilFilter,
+          airfilter: this.AirFilter,
+          petrolfilter: this.PetrolFilter,
+          breakeoil: this.BrakeOil,
+          untifreez: this.UntiFreeze,
+          previouskilometer: this.PreviouseKilometer,
+          nextkilometer: this.NextKilometer,
+          hydraulicoil: this.hydraulicoil,
+          userid: o,
+        })
+
+        .subscribe(() => {
+          this.ngOnInit();
         });
+    });
+
     this.ngOnInit();
   }
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
-          this.service.GetUserid(this.token).subscribe((o: any) => {
-          of(o).subscribe((y:any)=>{
-            this.CustomerList$ = this.service.GetCustomers(y);
-          }) 
-          });
-      this.loading = false;
+    this.service.GetUserid(this.token).subscribe((o: any) => {
+      of(o).subscribe((y: any) => {
+        this.CustomerList$ = this.service.GetCustomers(y);
+      });
+    });
+    this.loading = false;
   }
 }

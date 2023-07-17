@@ -45,6 +45,7 @@ export class AdminPanelComponent implements OnInit {
   clear() {
     localStorage.clear();
   }
+
   token: any;
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
@@ -52,8 +53,16 @@ export class AdminPanelComponent implements OnInit {
       of(res).subscribe((t:any) =>{
         this.storename$ = this.service.GetStorename(t);
       })
+      
     });
     
     
+  }
+  dataToggle(){
+    if(screen.width < 991){
+      return "collapse"
+    }else{
+      return "collapsee"
+    }
   }
 }

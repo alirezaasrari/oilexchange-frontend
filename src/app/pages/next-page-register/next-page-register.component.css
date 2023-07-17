@@ -79,3 +79,11 @@ input{
      width: 200px;
      height: 50px;
 }
+.was-validated .form-control:valid {
+    background-image: none;
+  }
+  
+  
+  .was-validated .form-control:invalid {
+    background-image: none;
+  }

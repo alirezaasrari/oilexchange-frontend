@@ -9,13 +9,17 @@ import { AdminPanelCustomerManegementService } from 'src/app/services/admin-pane
   styleUrls: ['./next-page-register.component.css'],
 })
 export class NextPageRegisterComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService ,private _snackBar: MatSnackBar) {}
-  password: string = '';
-  storename: string = '';
-  phone: string = '';
-  confirmpassword: string = '';
+  constructor(
+    private service: AdminPanelCustomerManegementService,
+    private _snackBar: MatSnackBar
+  ) {}
+
+  confirmpassword: string;
 
   registerrequest: RegisterRequst = new RegisterRequst();
+  isValid: boolean = false;
+  isValidd: boolean = true;
+
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
       duration: 3000,
@@ -24,11 +28,18 @@ export class NextPageRegisterComponent implements OnInit {
       verticalPosition: 'top',
     });
   }
+ 
+  passValidtion(e: any) {
+    if (this.confirmpassword == e.target.value) {
+      this.isValid = true;
+    } else if (this.confirmpassword != e.target.value) {
+      this.isValid = false;
+    }
+  }
+
   onRegister(): void {
     this.service.Register(this.registerrequest).subscribe();
-    this.openSnackBar("kjhjkhkj");
+    this.openSnackBar('kjhjkhkj');
   }
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 }

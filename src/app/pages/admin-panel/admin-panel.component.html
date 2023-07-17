@@ -17,22 +17,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-around">
           <li class="nav-item mb-1">
-            <button (click)="setView1()" [class.opacity-50]="showcomponent1">
+            <button (click)="setView1()" [class.opacity-50]="showcomponent1" [attr.data-bs-toggle]="dataToggle()" data-bs-target="#navbarSupportedContent">
               مدیریت مشتری ها
             </button>
           </li>
           <li class="nav-item mb-1">
-            <button (click)="setView2()" [class.opacity-50]="showcomponent2">
+            <button (click)="setView2()" [class.opacity-50]="showcomponent2" [attr.data-bs-toggle]="dataToggle()" data-bs-target="#navbarSupportedContent">
               مدیریت انبار
             </button>
           </li>
           <li class="nav-item mb-1">
-            <button (click)="setView3()" [class.opacity-50]="showcomponent3">
+            <button (click)="setView3()" [class.opacity-50]="showcomponent3" [attr.data-bs-toggle]="dataToggle()" data-bs-target="#navbarSupportedContent" >
               بررسی دقیق تر کسب و کار
             </button>
           </li>
           <li class="nav-item mb-1">
-            <button (click)="setView4()" [class.opacity-50]="showcomponent4">
+            <button (click)="setView4()" [class.opacity-50]="showcomponent4" [attr.data-bs-toggle]="dataToggle()" data-bs-target="#navbarSupportedContent">
               تبلیغات
             </button>
           </li>
