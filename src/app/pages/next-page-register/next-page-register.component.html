@@ -37,6 +37,7 @@
           placeholder="رمز ورود"
           pattern="(?=.*\d)(?=.*[a-z]).{6,}"
           required
+         
         />
         <label for="floatingPassword2">رمز ورود</label>
         <div class="invalid-feedback">رمز ورود را وارد کنید</div>
@@ -44,6 +45,7 @@
       </div>
       <div class="form-floating mt-3">
         <input
+
           type="password"
           class="form-control is-valid"
           id="floatingPassword3"
@@ -51,14 +53,14 @@
           [(ngModel)]="confirmpassword"
           pattern="(?=.*\d)(?=.*[a-z]).{6,}"
           required
-          (change)="passValidtion($event)"
+         
         />
 
         <label for="floatingPassword3">تکرار رمز ورود</label>
         <div class="invalid-feedback">رمز عبور را دوباره وارد کنید</div>
         <div
           [class]="
-            this.confirmpassword == registerrequest.pass
+            isValid
               ? 'd-none'
               : 'd-block text-danger'
           "
@@ -69,9 +71,7 @@
     </div>
     <div class="row d-flex justify-content-center pb-1">
       <button
-        [disabled]=""
         (click)="onRegister()"
-        routerLink="/login"
         class="login-to-crm mt-3"
         type="submit"
       >

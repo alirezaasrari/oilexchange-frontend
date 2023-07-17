@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import ICustomerCarService from 'src/app/InterFaces/ICustomerCarService';
 import { AdminPanelCustomerManegementService } from 'src/app/services/admin-panel-customer-manegement.service';
 import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection';
@@ -28,8 +28,17 @@ export class NextPagePlaqueComponent implements OnInit {
     this.CarServices.hydraulicoil,
   ];
   plaque: any;
+  show:boolean = false;
   ngOnInit(): void {
     this.plaque = this.route.snapshot.paramMap.get('plaquenumber');
-    this.CustomerList$ = this.service.GetCustomersHistory(this.plaque);
+    this.service.GetCustomersHistory(this.plaque).subscribe((res:ICustomerCarService[])=>{
+      if(res.length == 0){
+console.log("oooooooo");
+      }else{
+        this.show = true;
+        this.CustomerList$ = of(res) ;
+        console.log("qqqqqqqqqqqqq");
+      }
+    });
   }
 }
