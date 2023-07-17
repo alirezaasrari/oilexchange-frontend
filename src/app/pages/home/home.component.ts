@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { IPlaqueObject } from 'src/app/InterFaces/IPlaqueObject';
-import { plaqueObject } from 'src/app/Models/PlaqueObject';
-import { HistoryService } from 'src/app/services/historyService/history.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +7,8 @@ import { HistoryService } from 'src/app/services/historyService/history.service'
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(private service: HistoryService) {}
+  constructor(    private router: Router) {}
   ngOnInit(): void {}
-  plaqueobject: plaqueObject = new plaqueObject();
 
   alphaBets: string[] = [
     'الف',
@@ -47,30 +44,14 @@ export class HomeComponent {
     'ه',
     'ی',
   ];
-  plaquenumber: string;
-  firstCharector: number;
-  secondCharector: number;
-  thirdCharector: string;
-  fourthCharector: number;
-  fivthCharector: number;
-  sixthCharector: number;
-  seventhCharector: number;
-  eighththCharector: number;
-  // plaque: plaqueObject = new plaqueObject();
+  plaquenumber: string[]=['','','','','','','','',];
+  
   selectAlphabetHandler(event: any) {
-    this.thirdCharector = event.target.value;
+    this.plaquenumber[2] = event.target.value;
   }
-
+  plaquenumber2:string;
   onSearch() {
-    this.plaquenumber= this.eighththCharector.toString() +
-    this.seventhCharector.toString() +
-    this.sixthCharector.toString() +
-    this.fivthCharector.toString() + 
-    this.fourthCharector.toString() + 
-    this.thirdCharector +
-    this.secondCharector.toString() +
-    this.firstCharector.toString() ;
-    console.log(this.plaquenumber);
-   
+    this.plaquenumber2 = this.plaquenumber[0].concat(this.plaquenumber[1]).concat(this.plaquenumber[2]).concat(this.plaquenumber[3]).concat(this.plaquenumber[4]).concat(this.plaquenumber[5]).concat(this.plaquenumber[6]).concat(this.plaquenumber[7])
+    this.router.navigate(['/historyplaque', this.plaquenumber2]);
   }
 }
