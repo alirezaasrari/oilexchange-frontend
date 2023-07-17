@@ -30,10 +30,9 @@ import { AnalizeManagementComponent } from './components/admin-component/analize
 import { PromoteManagementComponent } from './components/admin-component/promote-management/promote-management.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AddCustomerModalComponent } from './components/add-customer-modal/add-customer-modal.component';
 import { PlaqueSmallComponent } from './components/plaque-small/plaque-small.component';
 import { LoadingComponent } from './components/loading/loading.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -45,7 +44,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     InputComponent,
     HistoryButtonComponent,
-    AddCustomerModalComponent,
     FlagnumberComponent,
     AlphabetSelectorComponent,
     NextPagePromoteComponent,
@@ -68,14 +66,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PlaqueSmallComponent,
     LoadingComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, FormsModule, AppRoutingModule,MatSnackBarModule, BrowserAnimationsModule],
-  providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: Interceptor,
-    //   multi: true,
-    // },
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
   ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

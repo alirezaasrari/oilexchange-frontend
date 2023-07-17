@@ -83,6 +83,14 @@ export class AdminPanelCustomerManegementService {
       { headers }
     );
   }
+  public GetCustomersHistory(plaque: string): Observable<ICustomerCarService[]> {
+    
+    return this.http.get<ICustomerCarService[]>(
+      this.oilexchangeserverurl +
+        `/HistoryCheck/historycheck/${plaque}`,
+
+    );
+  }
   public forgetpassword(phone: string): Observable<string> {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),

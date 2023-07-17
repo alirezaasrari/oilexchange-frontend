@@ -15,7 +15,7 @@ import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 const routes: Routes = [
   { path: 'promoted', component: NextPagePromoteComponent },
   { path: '', component: HomeComponent },
-  { path: 'historyplaque', component: NextPagePlaqueComponent},
+  { path: 'historyplaque/:plaquenumber', component: NextPagePlaqueComponent},
   { path: 'login', component: LoginComponent},
   { path: 'login/register' , component: NextPageRegisterComponent},
   { path: 'login/otp' , component: ForgetPasswordOtpComponent},
