@@ -1,8 +1,8 @@
 <app-loading *ngIf="loading"></app-loading>
-<table class="table" *ngIf="!loading">
+<table class="table table-striped" *ngIf="!loading">
   <thead>
-    <tr>
-      <th scope="col" class="text-center fw-bolder">شماره</th>
+    <tr class="table-warning">
+      <!-- <th scope="col" class="text-center fw-bolder">شماره</th> -->
       <th scope="col" class="text-center fw-bolder">نام</th>
       <th scope="col" class="text-center fw-bolder">خریده شده</th>
       <th scope="col" class="text-center fw-bolder">فروخته شده</th>
@@ -10,50 +10,50 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th class="text-center fw-bold" scope="row">1</th>
+    <tr class="table-primary">
+      <!-- <th class="text-center fw-bold" scope="row">1</th> -->
       <th class="text-center fw-bold" scope="row">روغن موتور</th>
       <td class="text-center fw-bold">{{ buyedengineoilnumber$ | async }}</td>
       <td class="text-center fw-bold">{{ selledengineoilnumber }}</td>
       <td class="text-center fw-bold">{{ engineoiltotal }}</td>
     </tr>
-    <tr>
-      <th class="text-center fw-bold" scope="row">2</th>
+    <tr class="table-warning">
+      <!-- <th class="text-center fw-bold" scope="row">2</th> -->
       <th class="text-center fw-bold" scope="row">روغن گیربکس</th>
       <td class="text-center fw-bold">{{ buyedgearboxoilnumber$ | async }}</td>
       <td class="text-center fw-bold">{{ selledgearboxoilnumber }}</td>
       <td class="text-center fw-bold">{{ gearboxoiltotal }}</td>
     </tr>
-    <tr>
-      <th class="text-center fw-bold" scope="row">3</th>
+    <tr class="table-primary">
+      <!-- <th class="text-center fw-bold" scope="row">3</th> -->
       <th class="text-center fw-bold" scope="row">روغن ترمز</th>
       <td class="text-center fw-bold">{{ buyedbreakeoilnumber$ | async }}</td>
       <td class="text-center fw-bold">{{ selledbreakeoilnumber }}</td>
       <td class="text-center fw-bold">{{ breakeoiltotal }}</td>
     </tr>
-    <tr>
-      <th class="text-center fw-bold" scope="row">4</th>
+    <tr class="table-warning">
+      <!-- <th class="text-center fw-bold" scope="row">4</th> -->
       <th class="text-center fw-bold" scope="row">فیلتر هوا</th>
       <td class="text-center fw-bold">{{ buyedairfilternumber$ | async }}</td>
       <td class="text-center fw-bold">{{ selledairfilternumber }}</td>
       <td class="text-center fw-bold">{{ airfiltertotal }}</td>
     </tr>
-    <tr>
-      <th class="text-center fw-bold" scope="row">5</th>
+    <tr class="table-primary">
+      <!-- <th class="text-center fw-bold" scope="row">5</th> -->
       <th class="text-center fw-bold" scope="row">فیلتر کابین</th>
       <td class="text-center fw-bold">{{ buyedcabinfilternumber$ | async }}</td>
       <td class="text-center fw-bold">{{ selledcabinfilternumber }}</td>
       <td class="text-center fw-bold">{{ cabinefiltertotal }}</td>
     </tr>
-    <tr>
-      <th class="text-center fw-bold" scope="row">6</th>
+    <tr class="table-warning">
+      <!-- <th class="text-center fw-bold" scope="row">6</th> -->
       <th class="text-center fw-bold" scope="row">فیلتر روغن</th>
       <td class="text-center fw-bold">{{ buyedoilfilternumber$ | async }}</td>
       <td class="text-center fw-bold">{{ selledoilfilternumber }}</td>
       <td class="text-center fw-bold">{{ oilfiltertotal }}</td>
     </tr>
-    <tr>
-      <th class="text-center fw-bold" scope="row">7</th>
+    <tr class="table-primary">
+      <!-- <th class="text-center fw-bold" scope="row">7</th> -->
       <th class="text-center fw-bold" scope="row">فیلتر بنزین</th>
       <td class="text-center fw-bold">
         {{ buyedpetrolfilternumber$ | async }}
@@ -61,16 +61,16 @@
       <td class="text-center fw-bold">{{ selledpetrolfilternumber }}</td>
       <td class="text-center fw-bold">{{ petrolfiltertotal }}</td>
     </tr>
-    <tr>
-      <th class="text-center fw-bold" scope="row">8</th>
+    <tr class="table-warning">
+      <!-- <th class="text-center fw-bold" scope="row">8</th> -->
       <th class="text-center fw-bold" scope="row">ضد یخ</th>
       <td class="text-center fw-bold">{{ buyeduntifreeznumber$ | async }}</td>
       <td class="text-center fw-bold">{{ selleduntifreeznumber }}</td>
       <td class="text-center fw-bold">{{ untifreeztotal }}</td>
     </tr>
 
-    <tr>
-      <th class="text-center fw-bold" scope="row">9</th>
+    <tr class="table-primary">
+      <!-- <th class="text-center fw-bold" scope="row">9</th> -->
       <th class="text-center fw-bold" scope="row">روغن هیدرولیک</th>
       <td class="text-center fw-bold">
         {{ buyedhydraulicoilnumber$ | async }}

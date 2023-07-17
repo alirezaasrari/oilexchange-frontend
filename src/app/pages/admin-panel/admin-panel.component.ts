@@ -43,7 +43,7 @@ export class AdminPanelComponent implements OnInit {
     this.showcomponent3 = false;
   }
   clear() {
-    localStorage.clear();
+    localStorage.removeItem("token");
   }
 
   token: any;
