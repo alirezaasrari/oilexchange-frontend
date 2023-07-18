@@ -30,7 +30,11 @@
         <div class="invalid-feedback">رمز عبور خود را وارد کنید</div>
       </div>
     </div>
+    <div class="container" >
+      مرا به خاطر بسپار
+      <input [checked]="check" (change)="Check()" type="checkbox"></div>
     <div class="row d-flex justify-content-center pb-1">
+      
       <button (click)="OnLOgin()" class="login-to-crm mt-3" type="submit">
         ورود
       </button>
