@@ -7,6 +7,7 @@ import IRegister from '../InterFaces/IRegister';
 import { ILogin } from '../InterFaces/ILogin';
 import IStore from '../InterFaces/IStore';
 import IChangePass from '../InterFaces/IChangePass';
+import IPromote from '../InterFaces/IPromote';
 
 @Injectable({
   providedIn: 'root',
@@ -101,6 +102,27 @@ export class AdminPanelCustomerManegementService {
     return this.http.post(
       this.oilexchangeserverurl +
         '/Auth/Reset-password',data
+    );
+  }
+  public Promote(data: IPromote) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.post(
+      this.oilexchangeserverurl + '/Promoted/promote',
+      data,
+      { headers }
+    );
+  }
+
+  public Getpromoted(userid: number): Observable<string> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get<string>(
+      this.oilexchangeserverurl +
+        `/Promoted/get-promoted?request=${userid}`,
+      { headers }
     );
   }
 }

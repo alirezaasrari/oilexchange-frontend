@@ -3,3 +3,28 @@
     border: solid 4px royalblue;
     border-radius: 25px;
 }
+.button{
+    background-color: royalblue;
+    border-radius: 25px;
+    border: solid 4px #fef3c4;
+    width: 300px;
+    height: 80px;
+    color: white;
+    font-weight: bold;
+}
+.button:hover{
+    background-color: #fef3c4;
+    border-radius: 25px;
+    border: solid 4px royalblue;
+    width: 300px;
+    height: 80px;
+    color: royalblue;
+    font-weight: bold;
+}
+.text-white{
+    font-size: x-large;
+    font-weight: bold;
+  line-height: 1.6;
+word-break: break-all;
+padding: 5px;
+}
