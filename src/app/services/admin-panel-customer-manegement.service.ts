@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import IRegister from '../InterFaces/IRegister';
 import { ILogin } from '../InterFaces/ILogin';
 import IStore from '../InterFaces/IStore';
+import IChangePass from '../InterFaces/IChangePass';
 
 @Injectable({
   providedIn: 'root',
@@ -92,24 +93,17 @@ export class AdminPanelCustomerManegementService {
     );
   }
   public forgetpassword(phone: string): Observable<string> {
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    });
-    return this.http.get<string>(
+    return this.http.post(
       this.oilexchangeserverurl +
-        `/Auth/forget-password?phone=${phone}`,
-      { headers }
+        `/Auth/forget-password?phone=${phone}`, {phone}, {
+          responseType: 'text',
+        }
     );
   }
-  public resetpassword(token: string,
-  pass: string): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    });
-    return this.http.get<any>(
+  public resetpassword(data:IChangePass){
+    return this.http.post(
       this.oilexchangeserverurl +
-        `/Auth/Reset-password?userid`,
-      { headers }
+        '/Auth/Reset-password',data
     );
   }
 }
