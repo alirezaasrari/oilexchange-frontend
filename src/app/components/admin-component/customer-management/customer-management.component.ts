@@ -122,6 +122,33 @@ export class CustomerManagementComponent implements OnInit {
           this.ngOnInit();
         });
     });
+      this.service.GetUserid(this.token).subscribe((res: any) => {
+        of(res).subscribe((y: any) => {
+            this.service
+              .AddToStore({
+                engineoilbuyed: 0,
+                gearboxoilbuyed: 0,
+                breakeoilbuyed: 0,
+                airfilterbuyed: 0,
+                cabinfilterbuyed: 0,
+                petrolfilterbuyed: 0,
+                untifreezbuyed: 0,
+                hydraulicoilbuyed: 0,
+                oilfilterbuyed: 0,
+                userid: y,
+                breakeoilselled:this.BrakeOil.length>1? 1 : 0,
+                airfilterselled:this.AirFilter.length>1? 1 : 0,
+                cabinfilterselled:this.CabinFilter.length>1? 1 : 0,
+                engineoilselled:this.enginoil.length>1? 1 : 0,
+                gearboxoilselled:this.GearBoxOil.length>1? 1 : 0,
+                hydraulicoilselled:this.hydraulicoil.length>1? 1 : 0,
+                oilfilterselled:this.OilFilter.length>1? 1 : 0,
+                petrolfilterselled:this.PetrolFilter.length>1? 1 : 0,
+                untifreezselled:this.UntiFreeze.length>1? 1 : 0,
+              })
+              .subscribe();
+        });
+      });
 
     this.ngOnInit();
   }

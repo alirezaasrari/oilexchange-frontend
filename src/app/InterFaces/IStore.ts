@@ -1,34 +1,34 @@
 export default interface IStore {
   engineoilbuyed:number;
-  engineoilselled?:number;
+  engineoilselled:number;
 
   gearboxoilbuyed:number;
-  gearboxoilselled?:number;
+  gearboxoilselled:number;
 
   cabinfilterbuyed:number;
-  cabinfilterselled?:number;
+  cabinfilterselled:number;
 
   oilfilterbuyed:number;
-  oilfilterselled?:number;
+  oilfilterselled:number;
 
   airfilterbuyed: number;
-  airfilterselled?:number;
+  airfilterselled:number;
 
   petrolfilterbuyed: number;
-  petrolfilterselled?:number;
+  petrolfilterselled:number;
 
   breakeoilbuyed: number;
-  breakeoilselled?: number;
+  breakeoilselled: number;
 
   untifreezbuyed: number;
-  untifreezselled?:number;
+  untifreezselled:number;
 
   userid: number;
   registereddate?:Date;
 
   
   hydraulicoilbuyed: number;
-  hydraulicoilselled?:number;
+  hydraulicoilselled:number;
 
 
 }

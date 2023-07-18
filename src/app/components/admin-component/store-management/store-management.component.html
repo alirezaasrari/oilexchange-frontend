@@ -14,42 +14,42 @@
       <!-- <th class="text-center fw-bold" scope="row">1</th> -->
       <th class="text-center fw-bold" scope="row">روغن موتور</th>
       <td class="text-center fw-bold">{{ buyedengineoilnumber$ | async }}</td>
-      <td class="text-center fw-bold">{{ selledengineoilnumber }}</td>
+      <td class="text-center fw-bold">{{ selledengineoilnumber$ | async}}</td>
       <td class="text-center fw-bold">{{ engineoiltotal }}</td>
     </tr>
     <tr class="table-warning">
       <!-- <th class="text-center fw-bold" scope="row">2</th> -->
       <th class="text-center fw-bold" scope="row">روغن گیربکس</th>
       <td class="text-center fw-bold">{{ buyedgearboxoilnumber$ | async }}</td>
-      <td class="text-center fw-bold">{{ selledgearboxoilnumber }}</td>
+      <td class="text-center fw-bold">{{ selledgearboxoilnumber$ | async}}</td>
       <td class="text-center fw-bold">{{ gearboxoiltotal }}</td>
     </tr>
     <tr class="table-primary">
       <!-- <th class="text-center fw-bold" scope="row">3</th> -->
       <th class="text-center fw-bold" scope="row">روغن ترمز</th>
       <td class="text-center fw-bold">{{ buyedbreakeoilnumber$ | async }}</td>
-      <td class="text-center fw-bold">{{ selledbreakeoilnumber }}</td>
+      <td class="text-center fw-bold">{{ selledbreakeoilnumber$ | async}}</td>
       <td class="text-center fw-bold">{{ breakeoiltotal }}</td>
     </tr>
     <tr class="table-warning">
       <!-- <th class="text-center fw-bold" scope="row">4</th> -->
       <th class="text-center fw-bold" scope="row">فیلتر هوا</th>
       <td class="text-center fw-bold">{{ buyedairfilternumber$ | async }}</td>
-      <td class="text-center fw-bold">{{ selledairfilternumber }}</td>
+      <td class="text-center fw-bold">{{ selledairfilternumber$ | async}}</td>
       <td class="text-center fw-bold">{{ airfiltertotal }}</td>
     </tr>
     <tr class="table-primary">
       <!-- <th class="text-center fw-bold" scope="row">5</th> -->
       <th class="text-center fw-bold" scope="row">فیلتر کابین</th>
       <td class="text-center fw-bold">{{ buyedcabinfilternumber$ | async }}</td>
-      <td class="text-center fw-bold">{{ selledcabinfilternumber }}</td>
+      <td class="text-center fw-bold">{{ selledcabinfilternumber$ | async}}</td>
       <td class="text-center fw-bold">{{ cabinefiltertotal }}</td>
     </tr>
     <tr class="table-warning">
       <!-- <th class="text-center fw-bold" scope="row">6</th> -->
       <th class="text-center fw-bold" scope="row">فیلتر روغن</th>
       <td class="text-center fw-bold">{{ buyedoilfilternumber$ | async }}</td>
-      <td class="text-center fw-bold">{{ selledoilfilternumber }}</td>
+      <td class="text-center fw-bold">{{ selledoilfilternumber$ | async}}</td>
       <td class="text-center fw-bold">{{ oilfiltertotal }}</td>
     </tr>
     <tr class="table-primary">
@@ -58,14 +58,14 @@
       <td class="text-center fw-bold">
         {{ buyedpetrolfilternumber$ | async }}
       </td>
-      <td class="text-center fw-bold">{{ selledpetrolfilternumber }}</td>
+      <td class="text-center fw-bold">{{ selledpetrolfilternumber$ | async}}</td>
       <td class="text-center fw-bold">{{ petrolfiltertotal }}</td>
     </tr>
     <tr class="table-warning">
       <!-- <th class="text-center fw-bold" scope="row">8</th> -->
       <th class="text-center fw-bold" scope="row">ضد یخ</th>
       <td class="text-center fw-bold">{{ buyeduntifreeznumber$ | async }}</td>
-      <td class="text-center fw-bold">{{ selleduntifreeznumber }}</td>
+      <td class="text-center fw-bold">{{ selleduntifreeznumber$ | async}}</td>
       <td class="text-center fw-bold">{{ untifreeztotal }}</td>
     </tr>
 
@@ -75,7 +75,7 @@
       <td class="text-center fw-bold">
         {{ buyedhydraulicoilnumber$ | async }}
       </td>
-      <td class="text-center fw-bold">{{ selledhydraulicoilnumber }}</td>
+      <td class="text-center fw-bold">{{ selledhydraulicoilnumber$ | async}}</td>
       <td class="text-center fw-bold">{{ hydrolicoiltotal }}</td>
     </tr>
   </tbody>
