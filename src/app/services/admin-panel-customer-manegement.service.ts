@@ -56,12 +56,9 @@ export class AdminPanelCustomerManegementService {
     );
   }
   public GetStorename(userid:number): Observable<string> {
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    });
     return this.http.get(
       this.oilexchangeserverurl + `/Store/getstorename?request=${userid}`,
-      { responseType: 'text',headers }
+      { responseType: 'text' }
     );
   }
   public GetUserid(token: string): Observable<number> {

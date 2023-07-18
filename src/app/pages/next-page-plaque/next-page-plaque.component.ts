@@ -29,15 +29,19 @@ export class NextPagePlaqueComponent implements OnInit {
   ];
   plaque: any;
   show:boolean = false;
+  name:string;
+  getname(id:number){
+    this.service.GetStorename(id).subscribe((res:string)=>{
+      this.name = res;
+    })
+  }
   ngOnInit(): void {
     this.plaque = this.route.snapshot.paramMap.get('plaquenumber');
     this.service.GetCustomersHistory(this.plaque).subscribe((res:ICustomerCarService[])=>{
       if(res.length == 0){
-console.log("oooooooo");
       }else{
         this.show = true;
         this.CustomerList$ = of(res) ;
-        console.log("qqqqqqqqqqqqq");
       }
     });
   }
