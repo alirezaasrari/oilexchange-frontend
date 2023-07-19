@@ -91,7 +91,7 @@ export class CustomerManagementComponent implements OnInit {
   servicedate: '';
   hydraulicoil: string = '';
   addCustomer(): void {
-    this.service.GetUserid(this.token).subscribe((o: any) => {
+    this.service.GetUserid().subscribe((o: any) => {
       this.service
         .AddCustomer({
           plaque:
@@ -122,7 +122,7 @@ export class CustomerManagementComponent implements OnInit {
           this.ngOnInit();
         });
     });
-      this.service.GetUserid(this.token).subscribe((res: any) => {
+      this.service.GetUserid().subscribe((res: any) => {
         of(res).subscribe((y: any) => {
             this.service
               .AddToStore({
@@ -153,8 +153,7 @@ export class CustomerManagementComponent implements OnInit {
     this.ngOnInit();
   }
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
-    this.service.GetUserid(this.token).subscribe((o: any) => {
+    this.service.GetUserid().subscribe((o: any) => {
       of(o).subscribe((y: any) => {
         this.CustomerList$ = this.service.GetCustomers(y);
       });

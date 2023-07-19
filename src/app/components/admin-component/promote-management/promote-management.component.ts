@@ -20,8 +20,7 @@ export class PromoteManagementComponent implements OnInit {
   token: any;
   request$:Observable<string>;
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
-    this.service.GetUserid(this.token).subscribe((res: any) => {
+    this.service.GetUserid().subscribe((res: any) => {
       of(res).subscribe((t: any) => {
         this.service.Getpromoted(t).subscribe((h:any) => {
           this.request$ = h
@@ -30,8 +29,7 @@ export class PromoteManagementComponent implements OnInit {
     });
   }
   addToPromotedList() {
-    this.token = localStorage.getItem('token');
-    this.service.GetUserid(this.token).subscribe((res: any) => {
+    this.service.GetUserid().subscribe((res: any) => {
       of(res).subscribe((t: any) => {
         this.promoted.UserId = t;
         this.service.Promote(this.promoted).subscribe(() => {

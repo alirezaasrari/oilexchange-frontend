@@ -62,13 +62,13 @@ export class AdminPanelCustomerManegementService {
       { responseType: 'text' }
     );
   }
-  public GetUserid(token: string): Observable<number> {
+  public GetUserid(): Observable<number> {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
     return this.http.get<number>(
       this.oilexchangeserverurl +
-        `/Store/get-userid?token=${token}`,
+        `/Store/get-userid?token`,
       { headers }
     );
   }

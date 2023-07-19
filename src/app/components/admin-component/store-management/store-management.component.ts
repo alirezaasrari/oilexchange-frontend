@@ -126,7 +126,7 @@ export class StoreManagementComponent implements OnInit {
   disable: boolean;
 
   addToStore(a:number,b:number,c:number,d:number,e:number,f:number,g:number,h:number,i:number): void {
-    this.service.GetUserid(this.token).subscribe((res: any) => {
+    this.service.GetUserid().subscribe((res: any) => {
       of(res).subscribe((y: any) => {
           this.service
             .AddToStore({
@@ -178,7 +178,7 @@ export class StoreManagementComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((res: IStore[]) => {
             this.oillist = res.map((p) => p.engineoilbuyed);
             this.length = this.oillist.length;
@@ -189,7 +189,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((res: IStore[]) => {
             this.oillist2 = res.map((p) => p.engineoilselled);
             this.length2 = this.oillist2.length;
@@ -201,7 +201,7 @@ export class StoreManagementComponent implements OnInit {
         });
 
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.gearlist = k.map((p) => p.gearboxoilbuyed);
             this.length = this.gearlist.length;
@@ -212,7 +212,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.gearlist2 = k.map((p) => p.gearboxoilselled);
             this.length2 = this.gearlist2.length;
@@ -223,7 +223,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.cabinlist = k.map((p) => p.cabinfilterbuyed);
             this.length = this.cabinlist.length;
@@ -234,7 +234,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.cabinlist2 = k.map((p) => p.cabinfilterselled);
             this.length2 = this.cabinlist2.length;
@@ -245,7 +245,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.airlist = k.map((p) => p.airfilterbuyed);
             this.length = this.airlist.length;
@@ -256,7 +256,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.airlist2 = k.map((p) => p.airfilterselled);
             this.length2 = this.airlist.length;
@@ -267,7 +267,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.freezlist = k.map((p) => p.untifreezbuyed);
             this.length = this.freezlist.length;
@@ -278,7 +278,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.freezlist2 = k.map((p) => p.untifreezselled);
             this.length2 = this.freezlist2.length;
@@ -289,7 +289,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.hydrolist = k.map((p) => p.hydraulicoilbuyed);
             this.length = this.hydrolist.length;
@@ -300,7 +300,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.hydrolist2 = k.map((p) => p.hydraulicoilselled);
             this.length2 = this.hydrolist2.length;
@@ -311,7 +311,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.oilflist = k.map((p) => p.oilfilterbuyed);
             this.length = this.oilflist.length;
@@ -322,7 +322,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.oilflist2 = k.map((p) => p.oilfilterselled);
             this.length2 = this.oilflist2.length;
@@ -333,7 +333,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.petrollist = k.map((p) => p.petrolfilterbuyed);
             this.length = this.petrollist.length;
@@ -344,7 +344,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.petrollist2 = k.map((p) => p.petrolfilterselled);
             this.length2 = this.petrollist.length;
@@ -355,7 +355,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.breaklist = k.map((p) => p.breakeoilbuyed);
             this.length = this.breaklist.length;
@@ -366,7 +366,7 @@ export class StoreManagementComponent implements OnInit {
           });
         });
 
-        this.service.GetUserid(this.token).subscribe((o: any) => {
+        this.service.GetUserid().subscribe((o: any) => {
           this.service.GetStore(o).subscribe((k: IStore[]) => {
             this.breaklist2 = k.map((p) => p.breakeoilselled);
             this.length2 = this.breaklist.length;

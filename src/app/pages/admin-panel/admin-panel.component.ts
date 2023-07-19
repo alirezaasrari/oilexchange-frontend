@@ -48,8 +48,7 @@ export class AdminPanelComponent implements OnInit {
 
   token: any;
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
-    this.service.GetUserid(this.token).subscribe((res:any) => {
+    this.service.GetUserid().subscribe((res:any) => {
       of(res).subscribe((t:any) =>{
         this.storename$ = this.service.GetStorename(t);
       })
