@@ -31,6 +31,7 @@ export class NextPagePlaqueComponent implements OnInit {
   show:boolean = false;
   name$:Observable<string>;
   loading:boolean = true;
+  storId:number;
   getname(id:number){
     this.name$ = this.service.GetStorename(id);
   }

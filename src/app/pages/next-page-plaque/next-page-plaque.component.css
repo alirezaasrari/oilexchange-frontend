@@ -94,3 +94,33 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;}
+#id{
+   
+        background-color: royalblue;
+        color: white;
+        border-radius: 15px;
+        font-weight: bolder;
+        border: solid 4px royalblue;
+         width: 100px;
+         height: 30px;
+
+}
+#id:hover{
+   
+        background-color: white;;
+        color: royalblue;
+        border-radius: 15px;
+        font-weight: bolder;
+        border: solid 4px royalblue;
+         width: 100px;
+         height: 30px;
+
+}
+#input-id{
+    background-color: #fef3c4;
+    border: none;
+    border-radius: 15px;
+    font-weight: bolder;
+    height: 35px;
+    width: 145px;
+}
