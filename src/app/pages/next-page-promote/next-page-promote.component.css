@@ -9,6 +9,9 @@ img {
   border: solid 4px royalblue;
   border-radius: 30px;
   padding: 40px;
-  font-weight: bold;
+  font-weight: bolder;
 
+}
+.text{
+  line-height: 49px;
 }
