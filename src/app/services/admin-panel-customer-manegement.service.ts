@@ -44,7 +44,8 @@ export class AdminPanelCustomerManegementService {
     });
     return this.http.post(
       this.oilexchangeserverurl + '/Store/addtostore',
-      data,{ headers }
+      data,
+      { headers }
     );
   }
   public GetStore(num: number): Observable<IStore[]> {
@@ -56,7 +57,7 @@ export class AdminPanelCustomerManegementService {
       { headers }
     );
   }
-  public GetStorename(userid:number): Observable<string> {
+  public GetStorename(userid: number): Observable<string> {
     return this.http.get(
       this.oilexchangeserverurl + `/Store/getstorename?request=${userid}`,
       { responseType: 'text' }
@@ -67,8 +68,7 @@ export class AdminPanelCustomerManegementService {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
     return this.http.get<number>(
-      this.oilexchangeserverurl +
-        `/Store/get-userid?token`,
+      this.oilexchangeserverurl + `/Store/get-userid?token`,
       { headers }
     );
   }
@@ -82,26 +82,26 @@ export class AdminPanelCustomerManegementService {
       { headers }
     );
   }
-  public GetCustomersHistory(plaque: string): Observable<ICustomerCarService[]> {
-    
+  public GetCustomersHistory(
+    plaque: string
+  ): Observable<ICustomerCarService[]> {
     return this.http.get<ICustomerCarService[]>(
-      this.oilexchangeserverurl +
-        `/HistoryCheck/historycheck/${plaque}`,
-
+      this.oilexchangeserverurl + `/HistoryCheck/historycheck/${plaque}`
     );
   }
   public forgetpassword(phone: string): Observable<string> {
     return this.http.post(
-      this.oilexchangeserverurl +
-        `/Auth/forget-password?phone=${phone}`, {phone}, {
-          responseType: 'text',
-        }
+      this.oilexchangeserverurl + `/Auth/forget-password?phone=${phone}`,
+      { phone },
+      {
+        responseType: 'text',
+      }
     );
   }
-  public resetpassword(data:IChangePass){
+  public resetpassword(data: IChangePass) {
     return this.http.post(
-      this.oilexchangeserverurl +
-        '/Auth/Reset-password',data
+      this.oilexchangeserverurl + '/Auth/Reset-password',
+      data
     );
   }
   public Promote(data: IPromote) {
@@ -120,9 +120,13 @@ export class AdminPanelCustomerManegementService {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
     return this.http.get<string>(
-      this.oilexchangeserverurl +
-        `/Promoted/get-promoted?request=${userid}`,
+      this.oilexchangeserverurl + `/Promoted/get-promoted?request=${userid}`,
       { headers }
+    );
+  }
+  deletePromote(id: number) {
+    return this.http.delete(
+      this.oilexchangeserverurl + `/Promoted/remove?request=${id}`
     );
   }
 }

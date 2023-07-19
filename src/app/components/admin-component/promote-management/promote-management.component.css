@@ -12,6 +12,24 @@
     color: white;
     font-weight: bold;
 }
+.button2{
+    background-color: red;
+    border-radius: 25px;
+    border: solid 4px #fef3c4;
+    width: 200px;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+}
+.button2:hover{
+    background-color: #fef3c4;
+    border-radius: 25px;
+    border: solid 4px red;
+    width: 200px;
+    height: 50px;
+    color: red;
+    font-weight: bold;
+}
 .button:hover{
     background-color: #fef3c4;
     border-radius: 25px;
