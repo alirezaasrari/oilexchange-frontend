@@ -186,6 +186,7 @@ export class StoreManagementComponent implements OnInit {
               this.oilsum = this.oillist[t] + this.oilsum;
             }
             this.buyedengineoilnumber$ = of(this.oilsum);
+             this.loading = false;
           });
         });
 
@@ -197,6 +198,7 @@ export class StoreManagementComponent implements OnInit {
               this.oilsum2 = this.oillist2[t] + this.oilsum2;
             }
             this.selledengineoilnumber$ = of(this.oilsum2);
+            this.loading = false;
           });
         });
 
@@ -209,6 +211,7 @@ export class StoreManagementComponent implements OnInit {
               this.gearsum = this.gearlist[t] + this.gearsum;
             }
             this.buyedgearboxoilnumber$ = of(this.gearsum);
+            this.loading = false;
           });
         });
 
@@ -220,6 +223,7 @@ export class StoreManagementComponent implements OnInit {
               this.gearsum2 = this.gearlist2[t] + this.gearsum2;
             }
             this.selledgearboxoilnumber$ = of(this.gearsum2);
+            this.loading = false;
           });
         });
 
@@ -231,6 +235,7 @@ export class StoreManagementComponent implements OnInit {
               this.cabinsum = this.cabinlist[t] + this.cabinsum;
             }
             this.buyedcabinfilternumber$ = of(this.cabinsum);
+            this.loading = false;
           });
         });
 
@@ -242,6 +247,7 @@ export class StoreManagementComponent implements OnInit {
               this.cabinsum2 = this.cabinlist2[t] + this.cabinsum2;
             }
             this.selledcabinfilternumber$ = of(this.cabinsum2);
+            this.loading = false;
           });
         });
 
@@ -253,6 +259,7 @@ export class StoreManagementComponent implements OnInit {
               this.airsum = this.airlist[t] + this.airsum;
             }
             this.buyedairfilternumber$ = of(this.airsum);
+            this.loading = false;
           });
         });
 
@@ -264,6 +271,7 @@ export class StoreManagementComponent implements OnInit {
               this.airsum2 = this.airlist2[t] + this.airsum2;
             }
             this.selledairfilternumber$ = of(this.airsum2);
+            this.loading = false;
           });
         });
 
@@ -275,6 +283,7 @@ export class StoreManagementComponent implements OnInit {
               this.freezsum = this.freezlist[t] + this.freezsum;
             }
             this.buyeduntifreeznumber$ = of(this.freezsum);
+            this.loading = false;
           });
         });
 
@@ -286,6 +295,7 @@ export class StoreManagementComponent implements OnInit {
               this.freezsum2 = this.freezlist2[t] + this.freezsum2;
             }
             this.selleduntifreeznumber$ = of(this.freezsum2);
+            this.loading = false;
           });
         });
 
@@ -297,6 +307,7 @@ export class StoreManagementComponent implements OnInit {
               this.hydrosum = this.hydrolist[t] + this.hydrosum;
             }
             this.buyedhydraulicoilnumber$ = of(this.hydrosum);
+            this.loading = false;
           });
         });
 
@@ -308,6 +319,7 @@ export class StoreManagementComponent implements OnInit {
               this.hydrosum2 = this.hydrolist2[t] + this.hydrosum2;
             }
             this.selledhydraulicoilnumber$ = of(this.hydrosum2);
+            this.loading = false;
           });
         });
 
@@ -319,6 +331,7 @@ export class StoreManagementComponent implements OnInit {
               this.oilfsum = this.oilflist[t] + this.oilfsum;
             }
             this.buyedoilfilternumber$ = of(this.oilfsum);
+            this.loading = false;
           });
         });
 
@@ -330,6 +343,7 @@ export class StoreManagementComponent implements OnInit {
               this.oilfsum2 = this.oilflist2[t] + this.oilfsum2;
             }
             this.selledoilfilternumber$ = of(this.oilfsum2);
+            this.loading = false;
           });
         });
 
@@ -341,6 +355,7 @@ export class StoreManagementComponent implements OnInit {
               this.petrolsum = this.petrollist[t] + this.petrolsum;
             }
             this.buyedpetrolfilternumber$ = of(this.petrolsum);
+            this.loading = false;
           });
         });
 
@@ -352,6 +367,7 @@ export class StoreManagementComponent implements OnInit {
               this.petrolsum2 = this.petrollist2[t] + this.petrolsum2;
             }
             this.selledpetrolfilternumber$ = of(this.petrolsum2);
+            this.loading = false;
           });
         });
 
@@ -363,6 +379,7 @@ export class StoreManagementComponent implements OnInit {
               this.brakesum = this.breaklist[t] + this.brakesum;
             }
             this.buyedbreakeoilnumber$ = of(this.brakesum);
+            this.loading = false;
           });
         });
 
@@ -374,9 +391,10 @@ export class StoreManagementComponent implements OnInit {
               this.brakesum2 = this.breaklist2[t] + this.brakesum2;
             }
             this.selledbreakeoilnumber$ = of(this.brakesum2);
+            this.loading = false;
           });
         });
 
-    this.loading = false;
+   
   }
 }

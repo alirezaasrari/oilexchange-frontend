@@ -29,11 +29,10 @@ export class NextPagePlaqueComponent implements OnInit {
   ];
   plaque: any;
   show:boolean = false;
-  name:string;
+  name$:Observable<string>;
+  loading:boolean = true;
   getname(id:number){
-    this.service.GetStorename(id).subscribe((res:string)=>{
-      this.name = res;
-    })
+    this.name$ = this.service.GetStorename(id);
   }
   ngOnInit(): void {
     this.plaque = this.route.snapshot.paramMap.get('plaquenumber');
@@ -42,6 +41,7 @@ export class NextPagePlaqueComponent implements OnInit {
       }else{
         this.show = true;
         this.CustomerList$ = of(res) ;
+        this.loading = false;
       }
     });
   }

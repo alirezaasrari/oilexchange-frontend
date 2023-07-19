@@ -17,6 +17,8 @@ export class PromoteManagementComponent implements OnInit {
   promoted: Promote = new Promote();
   token: any;
   show:boolean = false;
+  loading: boolean = true;
+  loading2: boolean = true;
   request$:Observable<string>[] = [];
   ngOnInit(): void {
     this.service.GetUserid().subscribe((res: any) => {
@@ -25,10 +27,11 @@ export class PromoteManagementComponent implements OnInit {
         if(r != null){
           this.request$.push(of(r.split("T")[0]));
           this.show = true;
+          this.loading2 = false;
         }else{
           this.show = false;
         }
-        
+        this.loading = false;
       });
       });
     });
@@ -39,6 +42,8 @@ export class PromoteManagementComponent implements OnInit {
         this.promoted.UserId = t;
         this.service.Promote(this.promoted).subscribe(() => {
           this.openSnackBar('درخواست شما ثبت شد ');
+          this.show =true;
+          this.loading2 =  false;
           this.ngOnInit();
         });
       });

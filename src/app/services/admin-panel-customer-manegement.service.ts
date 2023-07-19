@@ -125,8 +125,12 @@ export class AdminPanelCustomerManegementService {
     );
   }
   deletePromote(id: number) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
     return this.http.delete(
-      this.oilexchangeserverurl + `/Promoted/remove?request=${id}`
+      this.oilexchangeserverurl + `/Promoted/remove?request=${id}`,
+      { headers }
     );
   }
 }
