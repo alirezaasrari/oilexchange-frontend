@@ -87,7 +87,7 @@ export class AdminPanelCustomerManegementService {
   ): Observable<ICustomerCarService[]> {
     return this.http.get<ICustomerCarService[]>(
       this.oilexchangeserverurl + `/HistoryCheck/historycheck/${plaque}`
-    );
+    )
   }
   public forgetpassword(phone: string): Observable<string> {
     return this.http.post(

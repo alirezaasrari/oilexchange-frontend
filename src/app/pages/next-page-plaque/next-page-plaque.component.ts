@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import ICustomerCarService from 'src/app/InterFaces/ICustomerCarService';
@@ -8,10 +9,14 @@ import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection'
 @Component({
   selector: 'app-next-page-plaque',
   templateUrl: './next-page-plaque.component.html',
-  styleUrls: ['./next-page-plaque.component.css']
+  styleUrls: ['./next-page-plaque.component.css'],
 })
 export class NextPagePlaqueComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService,private route: ActivatedRoute,) {}
+  constructor(
+    private service: AdminPanelCustomerManegementService,
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
+  ) {}
   CustomerList$: Observable<ICustomerCarService[]>;
   CarServices: CarServiesCollection = new CarServiesCollection();
   rows: string[] = [
@@ -28,22 +33,46 @@ export class NextPagePlaqueComponent implements OnInit {
     this.CarServices.hydraulicoil,
   ];
   plaque: any;
-  show:boolean = false;
-  name$:Observable<string>;
-  loading:boolean = true;
-  storId:number;
-  getname(id:number){
+  show: boolean = false;
+  name$: Observable<string>;
+  loading: boolean = true;
+  storId: number;
+  getname(id: number) {
     this.name$ = this.service.GetStorename(id);
   }
-  ngOnInit(): void {
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: ['red-snackbar'],
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
+  ngOnInit() {
     this.plaque = this.route.snapshot.paramMap.get('plaquenumber');
-    this.service.GetCustomersHistory(this.plaque).subscribe((res:ICustomerCarService[])=>{
-      if(res.length == 0){
-      }else{
-        this.show = true;
-        this.CustomerList$ = of(res) ;
-        this.loading = false;
-      }
+
+    this.service.GetCustomersHistory(this.plaque).subscribe({
+      next: (res: ICustomerCarService[]) => {
+        if (res.length == 0) {
+        } else {
+          this.show = true;
+          this.CustomerList$ = of(res);
+          this.loading = false;
+        }
+      },
+      error: (e) => {
+        console.log(e);
+        if (e.status == 404) {
+          this.openSnackBar('موردی یافت نشد');
+        }
+        else if (e.status == 500) {
+          this.openSnackBar('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        }
+        else if (e.status == 0) {
+          this.openSnackBar('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        }
+      },
+      complete: () => console.log('done'),
     });
   }
 }
