@@ -1,4 +1,7 @@
-<div class="container d-flex justify-content-center pt-5">
+<div *ngIf="loading" class="m-5">
+  <app-loading ></app-loading>
+</div>
+<div class="container d-flex justify-content-center pt-5" *ngIf="!loading">
   <div class="login-container">
     <div class="container was-validated">
       <div class="form-floating">
