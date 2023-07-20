@@ -49,6 +49,7 @@ export class NextPagePlaqueComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.loading = true;
     this.plaque = this.route.snapshot.paramMap.get('plaquenumber');
 
     this.service.GetCustomersHistory(this.plaque).subscribe({
@@ -61,18 +62,14 @@ export class NextPagePlaqueComponent implements OnInit {
         }
       },
       error: (e) => {
-        console.log(e);
         if (e.status == 404) {
           this.openSnackBar('موردی یافت نشد');
-        }
-        else if (e.status == 500) {
+        } else if (e.status == 500) {
           this.openSnackBar('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
-        }
-        else if (e.status == 0) {
+        } else if (e.status == 0) {
           this.openSnackBar('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
         }
       },
-      complete: () => console.log('done'),
     });
   }
 }

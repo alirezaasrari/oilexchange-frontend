@@ -113,16 +113,14 @@ export class CustomerManagementComponent implements OnInit {
   addCustomer(): void {
     this.loading = true;
     if (
-      (
-        this.firstthCharecto.toString() +
-        this.secondCharecto.toString() +
-        this.thirdCharecto +
-        this.fourthCharecto.toString() +
-        this.fivethCharecto.toString() +
-        this.sixthCharecto.toString() +
-        this.seventhCharecto.toString() +
-        this.eightthCharecto.toString()
-      ).length > 2
+      this.firstthCharecto != null &&
+      this.secondCharecto != null &&
+      this.thirdCharecto != null &&
+      this.fourthCharecto != null &&
+      this.fivethCharecto != null &&
+      this.sixthCharecto != null &&
+      this.seventhCharecto != null &&
+      this.eightthCharecto != null
     ) {
       this.service.GetUserid().subscribe({
         next: (o: any) => {
@@ -153,7 +151,12 @@ export class CustomerManagementComponent implements OnInit {
             })
 
             .subscribe({
-              next: () => {},
+              next: () => {
+                this.openSnackBar(
+                  'مشتری شما با موفقیت به لیست مشتریان اضافه گردید'
+                );
+                this.ngOnInit();
+              },
               error: (e) => {
                 if (e.status == 404) {
                   this.openSnackBar1('موردی یافت نشد');

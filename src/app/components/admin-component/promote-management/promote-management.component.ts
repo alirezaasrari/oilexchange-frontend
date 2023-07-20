@@ -21,8 +21,9 @@ export class PromoteManagementComponent implements OnInit {
   loading2: boolean = true;
   request$:Observable<string>[] = [];
   ngOnInit(): void {
-    this.service.GetUserid().subscribe((res: any) => {
-      of(res).subscribe((t: any) => {
+    this.loading = true;
+    this.service.GetUserid().subscribe({next:(res: any) => {
+      of(res).subscribe({next:(t: any) => {
       this.service.Getpromoted(t).subscribe((r:string) =>{
         if(r != null){
           this.request$.push(of(r.split("T")[0]));
@@ -33,11 +34,33 @@ export class PromoteManagementComponent implements OnInit {
         }
         this.loading = false;
       });
-      });
-    });
+      },error:(e)=>{
+        this.loading = false;
+        if (e.status == 404) {
+          this.openSnackBar1('موردی یافت نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('');
+        }
+      }});
+    },error:(e)=>{
+      this.loading = false;
+      if (e.status == 404) {
+        this.openSnackBar1('موردی یافت نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('');
+      }
+    }});
   }
   addToPromotedList() {
-    this.service.GetUserid().subscribe((res: any) => {
+    this.service.GetUserid().subscribe({next:(res: any) => {
       of(res).subscribe((t: any) => {
         this.promoted.UserId = t;
         this.service.Promote(this.promoted).subscribe(() => {
@@ -47,22 +70,52 @@ export class PromoteManagementComponent implements OnInit {
           this.ngOnInit();
         });
       });
-    });
+    },error:(e)=>{
+      this.loading = false;
+      if (e.status == 404) {
+        this.openSnackBar1('موردی یافت نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('');
+      }
+    }});
   }
   remove(){
-    this.service.GetUserid().subscribe((res: any) => {
+    this.service.GetUserid().subscribe({next:(res: any) => {
       of(res).subscribe((t: any) => {
         this.service.deletePromote(t).subscribe(() => {
-          this.openSnackBar('درخواست شما ثبت شد ');
+          this.openSnackBar('درخواست شما با موفقیت حذف شد ');
           this.ngOnInit();
         });
       });
-    });
+    },error:(e)=>{
+      this.loading = false;
+      if (e.status == 404) {
+        this.openSnackBar1('موردی یافت نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('');
+      }
+    }});
   }
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
       duration: 3000,
       panelClass: ['green-snackbar'],
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
+  openSnackBar1(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: ['red-snackbar'],
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });
