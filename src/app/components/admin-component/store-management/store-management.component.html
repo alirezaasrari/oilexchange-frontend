@@ -150,70 +150,79 @@
   >
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-body d-flex justify-content-center">
+        <div class="modal-body d-flex justify-content-center row">
           <div class="card mt-5" style="width: 18rem">
             <div class="card-body">
               <h5 class="card-title text-center">افزودن به انبار</h5>
               <!-- here we put our modal object -->
               <div class="row d-flex justify-content-between mt-2">
-                <label for="">{{ rows2[1] }}</label>
+                <label for="1">{{ rows2[1] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="engineoilnumber"
+                  id="1"
                 />
-                <label for="">{{ rows2[2] }}</label>
+                <label for="2">{{ rows2[2] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="gearboxoilnumber"
+                  id="2"
                 />
-                <label for="">{{ rows2[3] }}</label>
+                <label for="3">{{ rows2[3] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="breakeoilnumber"
+                  id="3"
                 />
-                <label for="">{{ rows2[4] }}</label>
+                <label for="4">{{ rows2[4] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="airfilternumber"
+                  id="4"
                 />
-                <label for="">{{ rows2[5] }}</label>
+                <label for="5">{{ rows2[5] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="cabinfilternumber"
+                  id="5"
                 />
-                <label for="">{{ rows2[6] }}</label>
+                <label for="6">{{ rows2[6] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="oilfilternumber"
+                  id="6"
                 />
-                <label for="">{{ rows2[7] }}</label>
+                <label for="7">{{ rows2[7] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="petrolfilternumber"
+                  id="7"
                 />
-                <label for="">{{ rows2[8] }}</label>
+                <label for="8">{{ rows2[8] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="untifreeznumber"
+                  id="8"
                 />
-                <label for="">{{ rows2[9] }}</label>
+                <label for="9">{{ rows2[9] }}</label>
                 <input
                   placeholder="تعداد"
                   type="number"
                   [(ngModel)]="hydraulicoilnumber"
+                  id="9"
                 />
               </div>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center">
             <button
               type="button"
               class="btn btn-danger"

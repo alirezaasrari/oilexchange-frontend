@@ -44,12 +44,61 @@
  font-weight: bold;
  white-space: nowrap;
 }
-#input-text{
+#input-text1{
     width: 100%;
     border: 0px;
  
 }
-
+#input-text2{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text3{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text4{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text5{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text6{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text7{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text8{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text9{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text10{
+    width: 100%;
+    border: 0px;
+ 
+}
+#input-text11{
+    width: 100%;
+    border: 0px;
+ 
+}
 
 /* plaque css */
 
@@ -84,12 +133,49 @@
 }
 
 
-#width-input{
+#width-input1{
     width: 20px;
     background-color: #fef3c4;
     border: none;
     text-align: center;
 }
+#width-input2{
+    width: 20px;
+    background-color: #fef3c4;
+    border: none;
+    text-align: center;
+}
+#width-input3{
+    width: 20px;
+    background-color: #fef3c4;
+    border: none;
+    text-align: center;
+}
+#width-input4{
+    width: 20px;
+    background-color: #fef3c4;
+    border: none;
+    text-align: center;
+}
+#width-input5{
+    width: 20px;
+    background-color: #fef3c4;
+    border: none;
+    text-align: center;
+}
+#width-input6{
+    width: 20px;
+    background-color: #fef3c4;
+    border: none;
+    text-align: center;
+}
+#width-input7{
+    width: 20px;
+    background-color: #fef3c4;
+    border: none;
+    text-align: center;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

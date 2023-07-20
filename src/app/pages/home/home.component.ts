@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(    private router: Router) {}
+  constructor(private router: Router) {}
   ngOnInit(): void {}
 
   alphaBets: string[] = [
@@ -44,14 +44,21 @@ export class HomeComponent {
     'ه',
     'ی',
   ];
-  plaquenumber: string[]=['','','','','','','','',];
-  
+  plaquenumber: string[] = ['', '', '', '', '', '', '', ''];
+
   selectAlphabetHandler(event: any) {
     this.plaquenumber[2] = event.target.value;
   }
-  plaquenumber2:string;
+  plaquenumber2: string;
   onSearch() {
-    this.plaquenumber2 = this.plaquenumber[0].concat(this.plaquenumber[1]).concat(this.plaquenumber[2]).concat(this.plaquenumber[3]).concat(this.plaquenumber[4]).concat(this.plaquenumber[5]).concat(this.plaquenumber[6]).concat(this.plaquenumber[7])
+    this.plaquenumber2 = this.plaquenumber[0]
+      .concat(this.plaquenumber[1])
+      .concat(this.plaquenumber[2])
+      .concat(this.plaquenumber[3])
+      .concat(this.plaquenumber[4])
+      .concat(this.plaquenumber[5])
+      .concat(this.plaquenumber[6])
+      .concat(this.plaquenumber[7]);
     this.router.navigate(['/historyplaque', this.plaquenumber2]);
   }
 }
