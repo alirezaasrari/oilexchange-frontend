@@ -55,6 +55,9 @@ export class NextPagePlaqueComponent implements OnInit {
     this.service.GetCustomersHistory(this.plaque).subscribe({
       next: (res: ICustomerCarService[]) => {
         if (res.length == 0) {
+          this.show = false;
+          this.loading = false;
+          this.openSnackBar('موردی یافت نشد');
         } else {
           this.show = true;
           this.CustomerList$ = of(res);
@@ -62,6 +65,7 @@ export class NextPagePlaqueComponent implements OnInit {
         }
       },
       error: (e) => {
+        this.loading = false;
         if (e.status == 404) {
           this.openSnackBar('موردی یافت نشد');
         } else if (e.status == 500) {

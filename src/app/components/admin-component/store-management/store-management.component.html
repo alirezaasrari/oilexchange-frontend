@@ -150,7 +150,8 @@
   >
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-body d-flex justify-content-center row">
+        <app-loading *ngIf="loading"></app-loading>
+        <div class="modal-body d-flex justify-content-center row" *ngIf="!loading">
           <div class="card mt-5" style="width: 18rem">
             <div class="card-body">
               <h5 class="card-title text-center">افزودن به انبار</h5>

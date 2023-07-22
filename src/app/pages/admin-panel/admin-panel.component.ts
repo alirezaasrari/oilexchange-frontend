@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {  Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AdminPanelCustomerManegementService } from 'src/app/services/admin-panel-customer-manegement.service';
 
@@ -9,7 +10,8 @@ import { AdminPanelCustomerManegementService } from 'src/app/services/admin-pane
   styleUrls: ['./admin-panel.component.css'],
 })
 export class AdminPanelComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService) {}
+  constructor(private service: AdminPanelCustomerManegementService,private router: Router,
+    private _snackBar: MatSnackBar) {}
 
   storename$: Observable<string>;
   userid$:Observable<number>;
@@ -44,6 +46,16 @@ export class AdminPanelComponent implements OnInit {
   }
   clear() {
     localStorage.removeItem("token");
+    this.openSnackBar('شما با موفقیت از حساب کاربری خود خارج شدید');
+    this.router.navigate(['']);    
+  }
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: ['red-snackbar'],
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 
   token: any;

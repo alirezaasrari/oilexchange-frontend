@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import IStore from 'src/app/InterFaces/IStore';
 import { Store } from 'src/app/Models/Store';
@@ -11,7 +12,11 @@ import { CarServiesCollection } from 'src/app/staticValues/CarServiesCollection'
   styleUrls: ['./store-management.component.css'],
 })
 export class StoreManagementComponent implements OnInit {
-  constructor(private service: AdminPanelCustomerManegementService) {}
+  constructor(
+    private service: AdminPanelCustomerManegementService,
+    private _snackBar: MatSnackBar
+  ) {}
+  loading: boolean = false;
   token: any;
   oilsum: number = 0;
   oilsum2: number = 0;
@@ -141,7 +146,22 @@ export class StoreManagementComponent implements OnInit {
   hydrolicoiltotal: number = 0;
 
   disable: boolean;
-
+  openSnackBar1(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: ['red-snackbar'],
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: ['green-snackbar'],
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
   addToStore(
     a: number,
     b: number,
@@ -153,8 +173,9 @@ export class StoreManagementComponent implements OnInit {
     h: number,
     i: number
   ): void {
-    this.service.GetUserid().subscribe((res: any) => {
-      of(res).subscribe((y: any) => {
+    this.loading = true;
+    this.service.GetUserid().subscribe({next:(res: any) => {
+      of(res).subscribe({next:(y: any) => {
         this.service
           .AddToStore({
             engineoilbuyed: a,
@@ -177,9 +198,48 @@ export class StoreManagementComponent implements OnInit {
             oilfilterselled: 0,
             userid: y,
           })
-          .subscribe();
-      });
-    });
+          .subscribe({
+            next: () => {
+              this.loading = false;
+              this.openSnackBar('مورد انتخاب شده با موفقیت به انبار اضافه شد');
+            },
+            error: (e) => {
+              this.loading = false;
+              if (e.status == 404) {
+                this.openSnackBar1('موردی یافت نشد');
+              } else if (e.status == 500) {
+                this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+              } else if (e.status == 0) {
+                this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+              } else if (e.status == 400) {
+                this.openSnackBar1('');
+              }
+            },
+          });
+      },error:(e) => {
+        this.loading = false;
+        if (e.status == 404) {
+          this.openSnackBar1('موردی یافت نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('');
+        }
+      },});
+    },error:(e) => {
+      this.loading = false;
+      if (e.status == 404) {
+        this.openSnackBar1('موردی یافت نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('');
+      }
+    },});
 
     this.airfilternumber = 0;
     this.hydraulicoilnumber = 0;
@@ -229,9 +289,8 @@ export class StoreManagementComponent implements OnInit {
     this.ngOnInit();
   }
   ngOnInit(): void {
-
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((res: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(res: IStore[]) => {
         this.oillist = res.map((p) => p.engineoilbuyed);
         this.length = this.oillist.length;
         for (let t = 0; t < this.length; t++) {
@@ -239,11 +298,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedengineoilnumber$ = of(this.oilsum);
         this.loading1 = false;
-      });
-    });
+      },error:(e) => {
+        this.loading1 = false;
+        if (e.status == 404) {
+          this.openSnackBar1('روغن موتور اضافه نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('روغن موتور اضافه نشد');
+        }
+      },});
+    },error:(e) => {
+      this.loading1 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('روغن موتور اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('روغن موتور اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((res: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(res: IStore[]) => {
         this.oillist2 = res.map((p) => p.engineoilselled);
         this.length2 = this.oillist2.length;
         for (let t = 0; t < this.length2; t++) {
@@ -251,11 +332,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledengineoilnumber$ = of(this.oilsum2);
         this.loading2 = false;
-      });
-    });
+      },error:(e) => {
+        this.loading2 = false;
+        if (e.status == 404) {
+          this.openSnackBar1('روغن موتور اضافه نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('روغن موتور اضافه نشد');
+        }
+      },});
+    },error:(e) => {
+      this.loading2 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در روغن موتورهای فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در روغن موتور فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.gearlist = k.map((p) => p.gearboxoilbuyed);
         this.length = this.gearlist.length;
         for (let t = 0; t < this.length; t++) {
@@ -263,11 +366,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedgearboxoilnumber$ = of(this.gearsum);
         this.loading3 = false;
-      });
-    });
+      },error:(e) => {
+        this.loading3 = false;
+        if (e.status == 404) {
+          this.openSnackBar1('روغن گیربکس اضافه نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('روغن گیربکس اضافه نشد');
+        }
+      },});
+    },error:(e) => {
+      this.loading3 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('  روغن گیربکس  اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('  روغن گیربکس  اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.gearlist2 = k.map((p) => p.gearboxoilselled);
         this.length2 = this.gearlist2.length;
         for (let t = 0; t < this.length; t++) {
@@ -275,11 +400,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledgearboxoilnumber$ = of(this.gearsum2);
         this.loading4 = false;
-      });
-    });
+      },error:(e) => {
+        this.loading4 = false;
+        if (e.status == 404) {
+          this.openSnackBar1('روغن گیربکس اضافه نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('روغن گیربکس اضافه نشد');
+        }
+      },});
+    },error:(e) => {
+      this.loading4 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در روغن گیربکس فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در روغن گیربکس فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.cabinlist = k.map((p) => p.cabinfilterbuyed);
         this.length = this.cabinlist.length;
         for (let t = 0; t < this.length; t++) {
@@ -287,11 +434,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedcabinfilternumber$ = of(this.cabinsum);
         this.loading9 = false;
-      });
-    });
+      },error:(e) => {
+        this.loading9 = false;
+        if (e.status == 404) {
+          this.openSnackBar1('فیلتر کابین اضافه نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('فیلتر کابین اضافه نشد');
+        }
+      },});
+    },error:(e) => {
+      this.loading9 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('  فیلتر کابین  اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('  فیلتر کابین  اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.cabinlist2 = k.map((p) => p.cabinfilterselled);
         this.length2 = this.cabinlist2.length;
         for (let t = 0; t < this.length2; t++) {
@@ -299,11 +468,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledcabinfilternumber$ = of(this.cabinsum2);
         this.loading10 = false;
-      });
-    });
+      },error:(e) => {
+        this.loading10 = false;
+        if (e.status == 404) {
+          this.openSnackBar1('فیلتر کابین اضافه نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('فیلتر کابین اضافه نشد');
+        }
+      },});
+    },error:(e) => {
+      this.loading10 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در فیلتر کابین فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در فیلتر کابین فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.airlist = k.map((p) => p.airfilterbuyed);
         this.length = this.airlist.length;
         for (let t = 0; t < this.length; t++) {
@@ -311,11 +502,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedairfilternumber$ = of(this.airsum);
         this.loading7 = false;
-      });
-    });
+      },error:(e) => {
+        this.loading7 = false;
+        if (e.status == 404) {
+          this.openSnackBar1('فیلتر هوا اضافه نشد');
+        } else if (e.status == 500) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 0) {
+          this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+        } else if (e.status == 400) {
+          this.openSnackBar1('فیلتر هوا اضافه نشد');
+        }
+      },});
+    },error:(e) => {
+      this.loading7 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('  فیلتر هوا  اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('  فیلتر هوا  اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.airlist2 = k.map((p) => p.airfilterselled);
         this.length2 = this.airlist.length;
         for (let t = 0; t < this.length; t++) {
@@ -323,11 +536,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledairfilternumber$ = of(this.airsum2);
         this.loading8 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading8 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('فیلتر هوا اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('فیلتر هوا اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading8 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در فیلتر هوا فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در فیلتر هوا فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.freezlist = k.map((p) => p.untifreezbuyed);
         this.length = this.freezlist.length;
         for (let t = 0; t < this.length; t++) {
@@ -335,11 +570,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyeduntifreeznumber$ = of(this.freezsum);
         this.loading15 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading15 = false;
+      if (e.status == 404) {
+        this.openSnackBar1(' ضد یخ اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1(' ضدیخ اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading15 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('ضدیخ اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('ضدیخ اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.freezlist2 = k.map((p) => p.untifreezselled);
         this.length2 = this.freezlist2.length;
         for (let t = 0; t < this.length2; t++) {
@@ -347,11 +604,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selleduntifreeznumber$ = of(this.freezsum2);
         this.loading16 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading16 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('ضدیخ اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('ضدیخ اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading16 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در  ضدیخ فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در ضدیخ فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.hydrolist = k.map((p) => p.hydraulicoilbuyed);
         this.length = this.hydrolist.length;
         for (let t = 0; t < this.length; t++) {
@@ -359,11 +638,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedhydraulicoilnumber$ = of(this.hydrosum);
         this.loading17 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading17 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('روغن هیدرولیک اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('روغن هیدرولیک اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading17 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('روغن هیدرولیک اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('روغن هیدرولیک اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.hydrolist2 = k.map((p) => p.hydraulicoilselled);
         this.length2 = this.hydrolist2.length;
         for (let t = 0; t < this.length2; t++) {
@@ -371,11 +672,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledhydraulicoilnumber$ = of(this.hydrosum2);
         this.loading18 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading18 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('روغن هیدرولیک اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('روغن هیدرولیک اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading18 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در روغن هیدرولیک فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در روغن هیدرولیک فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.oilflist = k.map((p) => p.oilfilterbuyed);
         this.length = this.oilflist.length;
         for (let t = 0; t < this.length; t++) {
@@ -383,11 +706,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedoilfilternumber$ = of(this.oilfsum);
         this.loading11 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading11 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('فیلتر روغن اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('فیلتر روغن اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading11 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('فیلتر روغن اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('فیلتر روغن اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.oilflist2 = k.map((p) => p.oilfilterselled);
         this.length2 = this.oilflist2.length;
         for (let t = 0; t < this.length2; t++) {
@@ -395,11 +740,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledoilfilternumber$ = of(this.oilfsum2);
         this.loading12 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading12 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('فیلتر روغن اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('فیلتر روغن اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading12 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در فیلتر روغن فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در فیلتر روغن فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.petrollist = k.map((p) => p.petrolfilterbuyed);
         this.length = this.petrollist.length;
         for (let t = 0; t < this.length; t++) {
@@ -407,11 +774,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedpetrolfilternumber$ = of(this.petrolsum);
         this.loading13 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading13 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('فیلتر بنزین اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('فیلتر بنزین اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading13 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('فیلتر بنزین اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('فیلتر بنزین اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.petrollist2 = k.map((p) => p.petrolfilterselled);
         this.length2 = this.petrollist.length;
         for (let t = 0; t < this.length2; t++) {
@@ -419,11 +808,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledpetrolfilternumber$ = of(this.petrolsum2);
         this.loading14 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading14 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('فیلتر بنزین اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('فیلتر بنزین اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading14 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در فیلتر بنزین فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در فیلتر بنزین فروخته شده');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.breaklist = k.map((p) => p.breakeoilbuyed);
         this.length = this.breaklist.length;
         for (let t = 0; t < this.length; t++) {
@@ -431,11 +842,33 @@ export class StoreManagementComponent implements OnInit {
         }
         this.buyedbreakeoilnumber$ = of(this.brakesum);
         this.loading5 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading5 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('روغن ترمز اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('روغن ترمز اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading5 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('روغن ترمز اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('روغن ترمز اضافه نشد');
+      }
+    },});
 
-    this.service.GetUserid().subscribe((o: any) => {
-      this.service.GetStore(o).subscribe((k: IStore[]) => {
+    this.service.GetUserid().subscribe({next:(o: any) => {
+      this.service.GetStore(o).subscribe({next:(k: IStore[]) => {
         this.breaklist2 = k.map((p) => p.breakeoilselled);
         this.length2 = this.breaklist.length;
         for (let t = 0; t < this.length2; t++) {
@@ -443,7 +876,29 @@ export class StoreManagementComponent implements OnInit {
         }
         this.selledbreakeoilnumber$ = of(this.brakesum2);
         this.loading6 = false;
-      });
-    });
+      },error:(e) => {
+      this.loading6 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('روغن ترمز اضافه نشد');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('روغن ترمز اضافه نشد');
+      }
+    },});
+    },error:(e) => {
+      this.loading6 = false;
+      if (e.status == 404) {
+        this.openSnackBar1('خطا در روغن ترمز فروخته شده');
+      } else if (e.status == 500) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 0) {
+        this.openSnackBar1('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
+      } else if (e.status == 400) {
+        this.openSnackBar1('خطا در روغن ترمز فروخته شده');
+      }
+    },});
   }
 }
