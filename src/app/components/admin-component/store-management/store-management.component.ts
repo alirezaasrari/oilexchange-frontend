@@ -105,15 +105,15 @@ export class StoreManagementComponent implements OnInit {
   loading18: boolean = true;
   store: Store = new Store();
   number: number;
-  engineoilnumber: number;
-  hydraulicoilnumber: number;
-  airfilternumber: number;
-  breakeoilnumber: number;
-  cabinfilternumber: number;
-  oilfilternumber: number;
-  untifreeznumber: number;
-  petrolfilternumber: number;
-  gearboxoilnumber: number;
+  engineoilnumber: number =0;
+  hydraulicoilnumber: number =0;
+  airfilternumber: number =0;
+  breakeoilnumber: number =0;
+  cabinfilternumber: number =0;
+  oilfilternumber: number =0;
+  untifreeznumber: number =0;
+  petrolfilternumber: number =0;
+  gearboxoilnumber: number =0;
 
   selledengineoilnumber$: Observable<number>;
   selledhydraulicoilnumber$: Observable<number>;
@@ -173,6 +173,11 @@ export class StoreManagementComponent implements OnInit {
     h: number,
     i: number
   ): void {
+    if(a+b+c+d+e+f+g+h+i == 0 ){
+      this.openSnackBar1('لطفا حداقل یک فیلد را پر کنید');
+      return
+    }
+    
     this.loading = true;
     this.service.GetUserid().subscribe({next:(res: any) => {
       of(res).subscribe({next:(y: any) => {
