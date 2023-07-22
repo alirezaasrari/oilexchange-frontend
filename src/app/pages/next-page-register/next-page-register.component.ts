@@ -17,6 +17,7 @@ export class NextPageRegisterComponent implements OnInit {
   ) {}
 
   confirmpassword: string;
+  
 
   registerrequest: RegisterRequst = new RegisterRequst();
   isValid: boolean = true;
@@ -41,7 +42,7 @@ export class NextPageRegisterComponent implements OnInit {
 
   onRegister(): void {
     this.loading = true;
-    if (this.registerrequest.pass == this.confirmpassword) {
+    if (this.registerrequest.pass === this.confirmpassword) {
       this.service.Register(this.registerrequest).subscribe({
         next: () => {
           this.router.navigate(['/login']);
@@ -56,7 +57,7 @@ export class NextPageRegisterComponent implements OnInit {
           } else if (e.status == 0) {
             this.openSnackBar('خطای سرور لطفا چند دقیقه دیگر تلاش کنید');
           }else if (e.status == 400) {
-            this.openSnackBar('برای این شماره تلفن قبلا حساب کاربری ایجاد شده اشست');
+            this.openSnackBar('برای این شماره تلفن و یا نام مغازه قبلا حساب کاربری ایجاد شده است');
           }
         },
       });
@@ -66,6 +67,8 @@ export class NextPageRegisterComponent implements OnInit {
       this.loading = false;
       this.router.navigate(['/register']);
     }
+    console.log(this.confirmpassword)
+    console.log(this.registerrequest.pass)
   }
   ngOnInit(): void {}
 }
